@@ -1,0 +1,28 @@
+const feeds={
+  sq:'https://news.google.com/rss/search?q=fitness+OR+nutrition+OR+exercise+when:7d&hl=en-US&gl=US&ceid=US:en',
+  de:'https://news.google.com/rss/search?q=Fitness+OR+Ern%C3%A4hrung+OR+Training+when:7d&hl=de&gl=DE&ceid=DE:de',
+  en:'https://news.google.com/rss/search?q=fitness+OR+nutrition+OR+exercise+when:7d&hl=en-US&gl=US&ceid=US:en'
+};
+
+const decode=s=>String(s||'').replace(/<!CDATA\[|\]>/g,'').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>');
+const clean=s=>decode(s).replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
+const tag=(xml,name)=>{const m=xml.match(new RegExp(`<${name}[^>]*>([\\s\\S]*?)<\\/${name}>`,'i'));return m?clean(m[1]):''};
+
+exports.handler=async event=>{
+  try{
+    const lang=['sq','de','en'].includes(event.queryStringParameters?.lang)?event.queryStringParameters.lang:'sq';
+    const res=await fetch(feeds[lang],{headers:{'user-agent':'NKBeastsFitness/1.0'}});
+    if(!res.ok)throw new Error('feed '+res.status);
+
+    const xml=await res.text();
+    const chunks=xml.match(/<item>[\s\S]*?<\/item>/gi)||[];
+
+    const items=chunks.slice(0,9).map(x=>{
+      const rawDate=tag(x,'pubDate');
+      return {
+        title:tag(x,'title'),
+        link:tag(x,'link'),
+        description:tag(x,'description').slice(0,180),
+        date:rawDate
+          ? new Date(rawDate).toLocaleDateString(
+              lang==='de'?'de-DE':'
