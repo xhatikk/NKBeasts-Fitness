@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+<rect width="900" height="600" fill="#0c0d0f"/><circle cx="450" cy="300" r="220" fill="#17191d" stroke="#5b4721" stroke-width="4"/>
+<circle cx="450" cy="300" r="165" fill="#f2eee4"/><path d="M450 135v330M285 300h330" stroke="#d8d1c4" stroke-width="6"/>
+<g><circle cx="365" cy="215" r="52" fill="#ec7d45"/><circle cx="530" cy="215" r="52" fill="#7aa744"/><rect x="310" y="335" width="125" height="70" rx="25" fill="#d6a45e"/><rect x="470" y="335" width="125" height="70" rx="25" fill="#d4c8a4"/><circle cx="705" cy="155" r="65" fill="#779447"/><circle cx="208" cy="430" r="75" fill="#b85f3c"/></g>
+<text x="450" y="545" text-anchor="middle" fill="#d6a63f" font-family="Arial" font-size="30" font-weight="700">NKBEASTS NUTRITION</text></svg>
