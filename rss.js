@@ -1,1 +1,119 @@
-(()=>{const g=document.getElementById("newsGrid"),r=document.getElementById("refreshNews");const f=[{title:"The State of Food Security and Nutrition",source:"WHO",image:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=82"},{title:"Strength training supports healthy ageing",source:"ScienceDaily",image:"https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=82"},{title:"How much protein do you really need each day?",source:"Healthline",image:"https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=900&q=82"}];const e=s=>String(s||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));function draw(items){g.innerHTML=items.slice(0,6).map((x,i)=>`<article class="news-card"><img src="${e(x.image||f[i%3].image)}" alt=""><div><small>${e(x.source||"Fitness")}</small><h3>${e(x.title)}</h3><a href="${e(x.link||"#")}" target="_blank" rel="noopener">Read more →</a></div></article>`).join("")}async function load(){g.innerHTML='<p class="loading">Loading…</p>';try{const x=await fetch(`/api/rss?lang=${encodeURIComponent(window.currentLang||"sq")}`,{cache:"no-store"});if(!x.ok)throw 0;const d=await x.json();draw(d.items?.length?d.items:f)}catch{draw(f)}}r.addEventListener("click",load);window.addEventListener("load",load)})();
+const FEEDS = {
+  sq: "https://news.google.com/rss/search?q=fitness+nutrition+exercise&hl=en-US&gl=US&ceid=US:en",
+  de: "https://news.google.com/rss/search?q=Fitness+Ern%C3%A4hrung+Training&hl=de&gl=DE&ceid=DE:de",
+  en: "https://news.google.com/rss/search?q=fitness+nutrition+exercise&hl=en-US&gl=US&ceid=US:en"
+};
+
+function decodeText(text = "") {
+  return text
+    .replaceAll("<![CDATA[", "")
+    .replaceAll("]]>", "")
+    .replaceAll("&amp;", "&")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&#39;", "'")
+    .replaceAll("&apos;", "'")
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">");
+}
+
+function getValue(block, tag) {
+  const startTag = `<${tag}>`;
+  const endTag = `</${tag}>`;
+
+  const start = block.indexOf(startTag);
+  const end = block.indexOf(endTag);
+
+  if (start === -1 || end === -1) return "";
+
+  return decodeText(
+    block.slice(start + startTag.length, end)
+  ).trim();
+}
+
+function parseItems(xml) {
+  const results = [];
+  let position = 0;
+
+  while (results.length < 6) {
+    const start = xml.indexOf("<item>", position);
+    const end = xml.indexOf("</item>", start);
+
+    if (start === -1 || end === -1) break;
+
+    const block = xml.slice(start, end + 7);
+    const fullTitle = getValue(block, "title");
+    const link = getValue(block, "link");
+    const pubDate = getValue(block, "pubDate");
+
+    let title = fullTitle;
+    let source = "Google News";
+
+    const separator = fullTitle.lastIndexOf(" - ");
+
+    if (separator > 0) {
+      title = fullTitle.slice(0, separator).trim();
+      source = fullTitle.slice(separator + 3).trim();
+    }
+
+    results.push({
+      title,
+      source,
+      link,
+      pubDate,
+      image: `https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80&sig=${results.length}`
+    });
+
+    position = end + 7;
+  }
+
+  return results;
+}
+
+export async function onRequestGet(context) {
+  const url = new URL(context.request.url);
+  const requestedLang = url.searchParams.get("lang") || "sq";
+  const lang = FEEDS[requestedLang] ? requestedLang : "sq";
+
+  try {
+    const response = await fetch(FEEDS[lang], {
+      headers: {
+        Accept: "application/rss+xml,text/xml"
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`RSS error: ${response.status}`);
+    }
+
+    const xml = await response.text();
+    const items = parseItems(xml);
+
+    return new Response(
+      JSON.stringify({
+        success: true,
+        lang,
+        items
+      }),
+      {
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+          "Cache-Control": "public, max-age=600"
+        }
+      }
+    );
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: error.message,
+        items: []
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    );
+  }
+}
