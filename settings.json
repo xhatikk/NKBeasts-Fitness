@@ -1,0 +1,12 @@
+{
+  "brand": "NKBEASTS Fitness",
+  "defaultLanguage": "sq",
+  "supportedLanguages": [
+    "sq",
+    "de",
+    "en"
+  ],
+  "adsensePublisher": "ca-pub-4314152462884278",
+  "radioEnabled": true,
+  "rssEndpoint": "/api/rss"
+}

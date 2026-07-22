@@ -1,0 +1,19 @@
+{
+  "principles": [
+    {
+      "id": 1,
+      "title": "Protein",
+      "description": "Supports recovery and muscle growth."
+    },
+    {
+      "id": 2,
+      "title": "Carbohydrates",
+      "description": "Support energy and training performance."
+    },
+    {
+      "id": 3,
+      "title": "Healthy fats",
+      "description": "Support hormones and general health."
+    }
+  ]
+}
