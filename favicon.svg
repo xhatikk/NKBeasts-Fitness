@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<rect width="64" height="64" rx="12" fill="#080808"/>
+<path d="M13 21l9 7 10-15 10 15 9-7-5 24H18z" fill="#d8ae4f"/>
+<text x="32" y="55" text-anchor="middle" font-size="12" font-family="Arial" font-weight="700" fill="#fff">NK</text>
+</svg>
