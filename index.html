@@ -286,10 +286,23 @@ async function loadNews(){
  const grid=document.getElementById('newsGrid'),t=NEWS_TEXT[lang]||NEWS_TEXT.sq;
  grid.innerHTML=`<article class="newscard skeleton"><h3>${t.loading}</h3></article><article class="newscard skeleton"></article><article class="newscard skeleton"></article>`;
  try{
-  const r=await fetch('/.netlify/functions/rss?lang='+encodeURIComponent(lang),{headers:{accept:'application/json'}});
+  const feeds={
+   sq:'https://news.google.com/rss/search?q=fitness+OR+nutrition+OR+exercise+when:7d&hl=en-US&gl=US&ceid=US:en',
+   de:'https://news.google.com/rss/search?q=Fitness+OR+Ernaehrung+OR+Training+when:7d&hl=de&gl=DE&ceid=DE:de',
+   en:'https://news.google.com/rss/search?q=fitness+OR+nutrition+OR+exercise+when:7d&hl=en-US&gl=US&ceid=US:en'
+  };
+  const endpoint='https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent(feeds[lang]||feeds.sq);
+  const r=await fetch(endpoint,{headers:{accept:'application/json'}});
   if(!r.ok) throw new Error('HTTP '+r.status);
-  const data=await r.json(); if(!Array.isArray(data.items)||!data.items.length) throw new Error('empty');
-  grid.innerHTML=data.items.slice(0,6).map(n=>`<article class="newscard"><div class="newsdate">${esc(n.date||'')}</div><h3>${esc(n.title)}</h3><p>${esc(n.description||'')}</p><a class="source" target="_blank" rel="noopener noreferrer" href="${esc(n.link)}">${t.open} →</a></article>`).join('');
+  const data=await r.json();
+  if(data.status!=='ok'||!Array.isArray(data.items)||!data.items.length) throw new Error('empty');
+  const items=data.items.map(n=>({
+   title:n.title||'',
+   link:n.link||'',
+   description:String(n.description||n.content||'').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim().slice(0,180),
+   date:n.pubDate?new Date(n.pubDate).toLocaleDateString(lang==='de'?'de-DE':'en-GB',{day:'2-digit',month:'short',year:'numeric'}):''
+  }));
+  grid.innerHTML=items.slice(0,6).map(n=>`<article class="newscard"><div class="newsdate">${esc(n.date||'')}</div><h3>${esc(n.title)}</h3><p>${esc(n.description||'')}</p><a class="source" target="_blank" rel="noopener noreferrer" href="${esc(n.link)}">${t.open} →</a></article>`).join('');
  }catch(e){grid.innerHTML=`<article class="newscard"><h3>${t.error}</h3><p>RSS</p></article>`;}
 }
 const originalApplyLanguage=applyLanguage;
