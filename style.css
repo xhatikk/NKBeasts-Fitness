@@ -1,0 +1,76 @@
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#070707;color:#f4f1e8;font-family:Inter,Arial,sans-serif;overflow-x:hidden}.noise{position:fixed;inset:0;pointer-events:none;opacity:.035;z-index:999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}.site-header{position:fixed;top:0;left:0;right:0;height:82px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(7,7,7,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(216,174,79,.16);z-index:100}.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none}.brand .crown{font-size:28px;color:#d8ae4f;line-height:1}.brand strong{display:block;font-family:"Bebas Neue";font-size:28px;letter-spacing:2px}.brand small{display:block;font-size:9px;letter-spacing:6px;color:#d8ae4f}.main-nav{display:flex;gap:28px}.main-nav a,.footer-links a{color:#c9c4b9;text-decoration:none;font-size:13px;font-weight:600;transition:.25s}.main-nav a:hover,.footer-links a:hover{color:#d8ae4f}.header-actions{display:flex;align-items:center;gap:16px}.language-switcher{display:flex;border:1px solid #3a352c;border-radius:999px;padding:3px}.language-switcher button{border:0;background:transparent;color:#8f8a80;padding:7px 9px;border-radius:999px;font-size:11px;cursor:pointer}.language-switcher .active{background:#d8ae4f;color:#090909}.gold-btn,.ghost-btn{display:inline-flex;justify-content:center;align-items:center;min-height:48px;padding:0 24px;border-radius:2px;text-decoration:none;font-weight:800;font-size:12px;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;transition:.25s}.gold-btn{background:#d8ae4f;color:#090909;border:1px solid #d8ae4f}.gold-btn:hover{background:#f0ca73;transform:translateY(-2px)}.ghost-btn{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.26)}.ghost-btn:hover{border-color:#d8ae4f;color:#d8ae4f}.small{min-height:40px;padding:0 16px}.menu-btn{display:none;background:none;border:0;color:#fff;font-size:26px}.hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:140px 7vw 90px;background-image:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2200&q=90');background-size:cover;background-position:center 28%}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#050505 0%,rgba(5,5,5,.86) 38%,rgba(5,5,5,.25) 72%,rgba(5,5,5,.55) 100%)}.hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,#070707 0%,transparent 28%);z-index:1}.hero-content{position:relative;z-index:2;max-width:760px}.eyebrow,.section-kicker{display:flex;align-items:center;gap:12px;color:#d8ae4f;font-size:11px;letter-spacing:3px;font-weight:800}.eyebrow span{width:46px;height:1px;background:#d8ae4f}.hero h1,.section h2,.radio-section h2,.modal-card h2{font-family:"Bebas Neue";margin:20px 0 18px;line-height:.91;letter-spacing:1px}.hero h1{font-size:clamp(66px,9vw,132px);max-width:850px}.hero h1 span,.hero h1 em{display:block;font-style:normal}.hero h1 em,.section h2 span{color:#d8ae4f}.hero p{max-width:600px;color:#c6c1b7;line-height:1.7;font-size:16px}.hero-cta{display:flex;gap:12px;margin-top:34px}.hero-stats{display:flex;gap:42px;margin-top:55px}.hero-stats div{padding-left:16px;border-left:1px solid #d8ae4f}.hero-stats strong{display:block;font-family:"Bebas Neue";font-size:31px}.hero-stats span{color:#8f8a80;font-size:11px;text-transform:uppercase;letter-spacing:1px}.scroll-cue{position:absolute;right:5vw;bottom:34px;z-index:2;display:flex;align-items:center;gap:15px;transform:rotate(90deg);transform-origin:right;color:#827d73;font-size:9px;letter-spacing:2px}.scroll-cue i{display:block;width:55px;height:1px;background:#827d73}.section{padding:110px 7vw}.intro{background:#f1eee6;color:#111}.section-title-row,.section-header{display:flex;justify-content:space-between;align-items:flex-end;gap:45px;margin-bottom:50px}.section h2{font-size:clamp(48px,6vw,82px);color:#111}.dark-section h2,.calculator-section h2{color:#fff}.section-title-row>p,.section-header>p{max-width:440px;color:#676159;line-height:1.7}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature-card{position:relative;background:#fff;padding:36px;min-height:270px;border:1px solid #ded9cf;transition:.3s}.feature-card:hover{transform:translateY(-8px);box-shadow:0 25px 55px rgba(0,0,0,.09)}.feature-num{position:absolute;right:24px;top:24px;color:#c6bda8;font-family:"Bebas Neue";font-size:24px}.feature-icon{font-size:34px}.feature-card h3{font-size:18px;margin-top:45px}.feature-card p{color:#6c665e;line-height:1.7}.dark-section{background:#0c0c0c}.dark-section .section-header>p{color:#9a958b}.workout-grid{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:repeat(2,280px);gap:18px}.image-card{position:relative;overflow:hidden;background-image:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,.1)),var(--bg);background-size:cover;background-position:center;transition:.4s}.image-card:before{content:"";position:absolute;inset:0;border:1px solid rgba(216,174,79,.18)}.image-card:hover{background-size:110%}.large-card{grid-row:1/3}.image-card-content{position:absolute;left:30px;bottom:28px}.image-card-content span{color:#d8ae4f;font-size:10px;letter-spacing:2px;font-weight:800}.image-card h3{font-family:"Bebas Neue";font-size:42px;margin:7px 0 4px}.image-card p{margin:0 0 13px;color:#bbb5aa;font-size:13px}.text-link{border:0;background:none;color:#fff;font-weight:700;padding:0;cursor:pointer}.text-link:hover{color:#d8ae4f}.nutrition-section{display:grid;grid-template-columns:1.05fr .95fr;gap:7vw;background:#f1eee6;color:#111;align-items:center}.nutrition-visual{position:relative}.nutrition-visual img{width:100%;height:680px;object-fit:cover}.nutrition-badge{position:absolute;right:-25px;bottom:40px;background:#0b0b0b;color:#fff;padding:24px 28px;width:190px}.nutrition-badge strong{font-family:"Bebas Neue";color:#d8ae4f;font-size:44px}.nutrition-badge span{display:block;font-size:11px;line-height:1.5}.nutrition-copy h2{font-size:clamp(50px,6vw,80px)}.nutrition-copy>p{color:#69635b;line-height:1.8}.macro-list{margin-top:36px}.macro-list>div{display:flex;gap:22px;padding:20px 0;border-top:1px solid #d1cbc0}.macro-list b{color:#d8ae4f;font-family:"Bebas Neue";font-size:25px}.macro-list strong,.macro-list small{display:block}.macro-list small{color:#7d776e;margin-top:5px}.calculator-section{background:#111}.calc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.calc-tab{background:#191919;border:1px solid #2d2d2d;color:#aaa;padding:13px 18px;font-weight:800;cursor:pointer}.calc-tab.active{background:#d8ae4f;color:#090909;border-color:#d8ae4f}.calc-panel{display:none;background:#171717;border:1px solid #2b2b2b;padding:38px;grid-template-columns:1fr 260px;gap:45px;align-items:center}.calc-panel.active{display:grid}.calc-form{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.grid-form{grid-template-columns:repeat(2,1fr)}.calc-form label span{display:block;color:#9e998f;font-size:11px;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}.calc-form input,.calc-form select{width:100%;height:52px;background:#0d0d0d;border:1px solid #363636;color:#fff;padding:0 14px;font-size:16px}.calc-form .wide{grid-column:1/-1}.calc-result{min-height:190px;border-left:1px solid #3c3527;padding-left:40px;display:flex;flex-direction:column;justify-content:center}.calc-result small{color:#d8ae4f;letter-spacing:2px}.calc-result strong{font-family:"Bebas Neue";font-size:78px;line-height:1;margin:8px 0}.calc-result span{color:#aaa}.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.news-card{background:#151515;border:1px solid #292929;min-height:360px;overflow:hidden}.news-card img{width:100%;height:190px;object-fit:cover}.news-card-content{padding:24px}.news-card small{color:#d8ae4f;text-transform:uppercase}.news-card h3{font-size:18px;line-height:1.45}.news-card a{color:#fff;text-decoration:none}.news-card a:hover{color:#d8ae4f}.skeleton{background:linear-gradient(90deg,#151515,#222,#151515);background-size:200% 100%;animation:shimmer 1.5s infinite}.library-section{background:#f1eee6;color:#111}.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.article-grid article{padding:32px;border-top:3px solid #111;background:#fff}.article-grid span{font-family:"Bebas Neue";font-size:40px;color:#d8ae4f}.article-grid h3{font-size:20px;line-height:1.4;min-height:85px}.article-grid p{color:#777067;font-size:12px}.radio-section{padding:70px 7vw;background:#d8ae4f;color:#090909;display:flex;justify-content:space-between;align-items:center;gap:40px}.radio-section .section-kicker{color:#111}.radio-section h2{font-size:55px;margin:8px 0}.radio-section p{margin:0;color:#463a22}.radio-player{display:flex;align-items:center;gap:18px;background:#0b0b0b;color:#fff;padding:20px 24px;min-width:420px}.radio-play{width:54px;height:54px;border-radius:50%;background:#d8ae4f;border:0;color:#090909;font-size:19px;cursor:pointer}.radio-player strong,.radio-player span{display:block}.radio-player span{color:#8d887e;font-size:11px;margin-top:4px}.radio-player input{width:110px}footer{padding:60px 7vw 30px;background:#050505;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:40px;align-items:start}.footer-brand p{color:#777}.footer-links{display:grid;gap:12px}.socials{display:flex;gap:10px}.socials a{width:40px;height:40px;border:1px solid #39342b;color:#d8ae4f;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:11px}.copyright{grid-column:1/-1;border-top:1px solid #1b1b1b;padding-top:22px;color:#666;font-size:11px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-card{position:relative;width:min(680px,100%);max-height:88vh;overflow:auto;background:#111;border:1px solid #3d3525;padding:42px}.modal-card h2{font-size:58px}.modal-close{position:absolute;right:20px;top:15px;background:none;border:0;color:#fff;font-size:34px;cursor:pointer}.exercise-row{display:grid;grid-template-columns:1fr auto auto;gap:15px;padding:15px 0;border-top:1px solid #2b2b2b}.exercise-row span{color:#aaa}.cookie-banner{position:fixed;left:20px;right:20px;bottom:20px;background:#111;border:1px solid #4b402a;padding:18px 20px;z-index:300;display:flex;align-items:center;justify-content:space-between;gap:25px;box-shadow:0 20px 70px rgba(0,0,0,.45)}.cookie-banner p{margin:0;color:#ccc}.cookie-banner>div{display:flex;gap:8px}.cookie-banner.hidden{display:none}.reveal{opacity:0;transform:translateY(25px);transition:.7s}.reveal.visible{opacity:1;transform:none}@keyframes shimmer{to{background-position:-200% 0}}@media(max-width:1000px){.main-nav{position:absolute;top:82px;left:0;right:0;background:#090909;display:none;flex-direction:column;padding:25px 7vw}.main-nav.open{display:flex}.menu-btn{display:block}.header-actions .gold-btn{display:none}.workout-grid{grid-template-columns:1fr;grid-template-rows:420px 280px 280px}.large-card{grid-row:auto}.nutrition-section{grid-template-columns:1fr}.nutrition-visual img{height:520px}.calc-panel{grid-template-columns:1fr}.calc-result{border-left:0;border-top:1px solid #3c3527;padding:25px 0 0}.radio-section{flex-direction:column;align-items:flex-start}.radio-player{min-width:0;width:100%}}@media(max-width:700px){.site-header{height:72px;padding:0 18px}.brand strong{font-size:23px}.brand small{letter-spacing:4px}.hero{padding:120px 20px 80px;background-position:62% center}.hero:after{background:linear-gradient(90deg,#050505 0%,rgba(5,5,5,.82) 72%,rgba(5,5,5,.35) 100%)}.hero h1{font-size:63px}.hero p{font-size:14px}.hero-cta{flex-direction:column;align-items:flex-start}.hero-stats{gap:18px}.section{padding:75px 20px}.section-title-row,.section-header{display:block}.section-title-row>p,.section-header>p{margin-top:18px}.feature-grid,.news-grid,.article-grid{grid-template-columns:1fr}.workout-grid{grid-template-rows:380px 260px 260px}.nutrition-visual img{height:430px}.nutrition-badge{right:10px}.calc-panel{padding:24px}.calc-form,.grid-form{grid-template-columns:1fr}.calc-form .wide{grid-column:auto}.calc-result strong{font-size:66px}.radio-section{padding:55px 20px}.radio-player{flex-wrap:wrap}.radio-player input{width:100%}footer{grid-template-columns:1fr;padding:50px 20px 25px}.cookie-banner{flex-direction:column;align-items:flex-start}.cookie-banner>div{width:100%}.cookie-banner button{flex:1}.scroll-cue{display:none}}
+
+.plan-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:0 18px;
+  margin-top:6px;
+  border:1px solid #d8ae4f;
+  background:#d8ae4f;
+  color:#090909;
+  font-weight:800;
+  font-size:11px;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:.25s ease;
+}
+.plan-btn:hover{
+  background:#f0ca73;
+  border-color:#f0ca73;
+  transform:translateY(-2px);
+}
+.image-card-content{
+  max-width:80%;
+}
+
+
+/* Radio genre upgrade — V12 */
+.radio-box{
+  width:min(720px,100%);
+}
+.radio-genres{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin:0 0 16px;
+}
+.radio-genre{
+  min-height:40px;
+  padding:0 15px;
+  border:1px solid rgba(216,174,79,.55);
+  border-radius:999px;
+  background:#111;
+  color:#e5c267;
+  font:inherit;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.2s ease;
+}
+.radio-genre:hover,
+.radio-genre.active{
+  background:#d8ae4f;
+  color:#090909;
+  border-color:#d8ae4f;
+  transform:translateY(-1px);
+}
+.radio-info{
+  min-width:130px;
+  display:flex;
+  flex-direction:column;
+}
+.radio-info span{
+  opacity:.72;
+  font-size:12px;
+}
+@media (max-width:640px){
+  .radio-box{width:100%}
+  .radio-genres{gap:7px}
+  .radio-genre{
+    flex:1 1 calc(50% - 7px);
+    padding:0 10px;
+  }
+}
