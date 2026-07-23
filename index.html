@@ -133,6 +133,17 @@
     .loading{color:var(--muted)}
 
     .library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .shop-card{overflow:hidden;background:#0a0e13;border:1px solid #222b34;border-radius:12px;transition:.25s ease}
+    .shop-card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 18px 45px rgba(0,0,0,.35)}
+    .shop-card img{width:100%;height:230px;object-fit:cover;display:block}
+    .shop-card-content{padding:18px}
+    .shop-card small{color:var(--gold);font-weight:800;letter-spacing:.08em}
+    .shop-card h3{margin:8px 0 7px;font-size:18px}
+    .shop-card p{margin:0 0 16px;color:var(--muted);font-size:13px;line-height:1.55}
+    .shop-card .coming{display:inline-flex;padding:9px 12px;border:1px solid #3b444f;color:#d5d9de;font-size:11px;font-weight:800}
+    .shop-note{margin-top:22px;padding:17px 19px;border-left:3px solid var(--gold);background:#0a0e13;color:#c5cbd2;line-height:1.6}
+
     .library-grid article,.library-grid .library-card{display:block;padding:30px;background:#0a0e13;border:1px solid #222b34;border-radius:12px;transition:.2s ease}.library-grid .library-card:hover{border-color:var(--gold);transform:translateY(-3px)}.library-grid .library-card b{color:var(--gold)}
     .library-grid span{font-size:34px}
     .library-grid p{color:var(--muted)}
@@ -185,7 +196,7 @@
       .feature-grid{grid-template-columns:1fr 1fr;padding:0 22px}
       .radio-strip{margin:-42px 22px 0;grid-template-columns:1fr}
       .genre-row,.section{padding-left:22px;padding-right:22px}
-      .workout-grid,.split,.library-grid,.news-grid{grid-template-columns:1fr}
+      .workout-grid,.split,.library-grid,.news-grid,.shop-grid{grid-template-columns:1fr}
       .workout-card:last-child{grid-column:auto}
       .split>img{height:400px}
       .calc-panel,.calc-panel.active{grid-template-columns:1fr}
@@ -227,6 +238,7 @@
     <a href="#calculators" data-i18n="calculators">CALCULATORS</a>
     <a href="#news" data-i18n="news">NEWS</a>
     <a href="#library" data-i18n="library">LIBRARY</a>
+    <a href="#shop" data-shop-i18n="nav">SHOP</a>
     <a href="#radio" data-i18n="radioLive">RADIO LIVE</a>
   </nav>
 
@@ -362,6 +374,25 @@
     </div>
   </section>
 
+
+  <section id="shop" class="section">
+    <div class="section-head">
+      <div><p class="kicker">NKBEASTS SHOP</p><h2 data-shop-i18n="title">PAJISJE & VESHJE</h2></div>
+    </div>
+    <div class="shop-grid">
+      <article class="shop-card"><img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=82" alt="Doreza fitnesi NKBEASTS"><div class="shop-card-content"><small>NKBEASTS GEAR</small><h3 data-shop-i18n="gloves">Doreza fitnesi</h3><p data-shop-i18n="glovesText">Kapje më e sigurt dhe mbrojtje për duart gjatë ushtrimeve.</p><span class="coming" data-shop-i18n="coming">SË SHPEJTI</span></div></article>
+      <article class="shop-card"><img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=82" alt="Rrip ngritjeje NKBEASTS"><div class="shop-card-content"><small>NKBEASTS GEAR</small><h3 data-shop-i18n="belt">Rrip ngritjeje</h3><p data-shop-i18n="beltText">Mbështetje për belin gjatë squat, deadlift dhe ngritjeve të rënda.</p><span class="coming" data-shop-i18n="coming">SË SHPEJTI</span></div></article>
+      <article class="shop-card"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=82" alt="T-shirt NKBEASTS"><div class="shop-card-content"><small>NKBEASTS WEAR</small><h3 data-shop-i18n="shirt">T-shirt sportive</h3><p data-shop-i18n="shirtText">Bluzë sportive me logon NKBEASTS për palestër dhe përdorim të përditshëm.</p><span class="coming" data-shop-i18n="coming">SË SHPEJTI</span></div></article>
+      <article class="shop-card"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=82" alt="Atlete sportive NKBEASTS"><div class="shop-card-content"><small>NKBEASTS WEAR</small><h3 data-shop-i18n="shoes">Atlete sportive</h3><p data-shop-i18n="shoesText">Atlete për stërvitje, ecje dhe performancë të përditshme.</p><span class="coming" data-shop-i18n="coming">SË SHPEJTI</span></div></article>
+      <article class="shop-card"><img src="https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=900&q=82" alt="Kapelë NKBEASTS"><div class="shop-card-content"><small>NKBEASTS WEAR</small><h3 data-shop-i18n="cap">Kapelë sportive</h3><p data-shop-i18n="capText">Kapelë e lehtë me dizajn të pastër dhe logon NKBEASTS.</p><span class="coming" data-shop-i18n="coming">SË SHPEJTI</span></div></article>
+      <article class="shop-card"><img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?auto=format&fit=crop&w=900&q=82" alt="Shorce sportive NKBEASTS"><div class="shop-card-content"><small>NKBEASTS WEAR</small><h3 data-shop-i18n="shorts">Shorce sportive</h3><p data-shop-i18n="shortsText">Shorce të rehatshme për palestër, vrapim dhe stërvitje intensive.</p><span class="coming" data-shop-i18n="coming">SË SHPEJTI</span></div></article>
+      <article class="shop-card"><img src="https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=900&q=82" alt="Çorape sportive NKBEASTS"><div class="shop-card-content"><small>NKBEASTS WEAR</small><h3 data-shop-i18n="socks">Çorape sportive</h3><p data-shop-i18n="socksText">Çorape sportive të rehatshme me logon NKBEASTS.</p><span class="coming" data-shop-i18n="coming">SË SHPEJTI</span></div></article>
+      <article class="shop-card"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=82" alt="Çantë fitnesi NKBEASTS"><div class="shop-card-content"><small>NKBEASTS GEAR</small><h3 data-shop-i18n="bag">Çantë fitnesi</h3><p data-shop-i18n="bagText">Hapësirë për rroba, këpucë, shaker dhe pajisjet e stërvitjes.</p><span class="coming" data-shop-i18n="coming">SË SHPEJTI</span></div></article>
+      <article class="shop-card"><img src="https://images.unsplash.com/photo-1526401485004-2aa7a79f7f63?auto=format&fit=crop&w=900&q=82" alt="Shaker NKBEASTS"><div class="shop-card-content"><small>NKBEASTS GEAR</small><h3 data-shop-i18n="shaker">Shaker & shishe</h3><p data-shop-i18n="shakerText">Për ujë, proteinë dhe pije sportive gjatë gjithë ditës.</p><span class="coming" data-shop-i18n="coming">SË SHPEJTI</span></div></article>
+    </div>
+    <p class="shop-note" data-shop-i18n="note">Ky është prezantimi i koleksionit. Shitja nuk aktivizohet derisa produktet, çmimet dhe furnizuesi të jenë gati.</p>
+  </section>
+
   <section class="stats">
     <div><span>🌍</span><b>3</b><small>Gjuhë</small></div>
     <div><span>🧮</span><b>4</b><small>Kalkulatorë</small></div>
@@ -382,7 +413,7 @@
     </div>
   </div>
 
-  <div><h4 data-i18n="platformLabel">PLATFORMË</h4><a href="#workouts">Workouts</a><a href="#nutrition">Nutrition</a><a href="#calculators">Calculators</a><a href="#news">News</a></div>
+  <div><h4 data-i18n="platformLabel">PLATFORMË</h4><a href="#workouts">Workouts</a><a href="#nutrition">Nutrition</a><a href="#calculators">Calculators</a><a href="#news">News</a><a href="#shop">Shop</a></div>
   <div><h4 data-i18n="categories">KATEGORITË</h4><a href="#workouts">Forcë & Muskuj</a><a href="#nutrition">Ushqim i Pastër</a><a href="#library">Lifestyle</a></div>
   <div>
     <h4>INFO</h4>
@@ -781,6 +812,7 @@
 </script>
 
   <script src="rss.js" defer></script>
+  <script src="shop.js" defer></script>
 <script>
 (() => {
   const banner = document.getElementById('cookieBanner');
