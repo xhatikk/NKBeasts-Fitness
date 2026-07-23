@@ -1,40 +1,58 @@
-const FEEDS = {
-  sq: [
-    "https://www.sciencedaily.com/rss/health_medicine/fitness.xml",
-    "https://www.sciencedaily.com/rss/health_medicine/nutrition.xml",
-    "https://feeds.bbci.co.uk/news/health/rss.xml"
-  ],
-  de: [
-    "https://www.sciencedaily.com/rss/health_medicine/fitness.xml",
-    "https://www.sciencedaily.com/rss/health_medicine/nutrition.xml",
-    "https://feeds.bbci.co.uk/news/health/rss.xml"
-  ],
-  en: [
-    "https://www.sciencedaily.com/rss/health_medicine/fitness.xml",
-    "https://www.sciencedaily.com/rss/health_medicine/nutrition.xml",
-    "https://feeds.bbci.co.uk/news/health/rss.xml"
-  ]
-};
+function parseFeed(xml, imageOffset = 0) {
+  const blocks = xml.match(/<item\b[\s\S]*?<\/item>/gi) || [];
 
-const DEFAULT_IMAGES = [
-  "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1200&q=82",
-  "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=82",
-  "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=82",
-  "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1200&q=82",
-  "https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=1200&q=82",
-  "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=82"
-];
+  return blocks
+    .map((block, index) => {
+      /*
+       * Provojmë së pari content:encoded sepse zakonisht
+       * përmban më shumë tekst se description.
+       */
+      const rawContent =
+        getTag(block, "content:encoded") ||
+        getTag(block, "description") ||
+        getTag(block, "summary");
 
-const FALLBACK = {
-  sq: [
-    {
-      title: "Stërvitja e forcës ndihmon në ruajtjen e muskujve",
-      source: "NKBEASTS",
-      date: "",
-      image: DEFAULT_IMAGES[0],
-      description: "Stërvitja e forcës ndihmon në ruajtjen e masës muskulore, forcimin e kockave dhe përmirësimin e aftësisë funksionale. Filloni me ushtrime bazë, teknikë të kontrolluar dhe rritje graduale.",
-      link: "/#workouts"
-    },
+      const title = stripHtml(getTag(block, "title"));
+
+      const link = stripHtml(
+        getTag(block, "link") ||
+        getTag(block, "guid")
+      );
+
+      /*
+       * Nuk e presim më tekstin në 700 karaktere.
+       */
+      const description = stripHtml(rawContent);
+
+      const source =
+        stripHtml(getTag(block, "source")) ||
+        sourceFromLink(link);
+
+      const date =
+        stripHtml(getTag(block, "pubDate")) ||
+        stripHtml(getTag(block, "dc:date")) ||
+        stripHtml(getTag(block, "published")) ||
+        stripHtml(getTag(block, "updated"));
+
+      const image =
+        findImage(block, rawContent) ||
+        DEFAULT_IMAGES[
+          (index + imageOffset) % DEFAULT_IMAGES.length
+        ];
+
+      return {
+        title,
+        link,
+        description:
+          description ||
+          "No additional article description was provided by this RSS source.",
+        source,
+        date,
+        image
+      };
+    })
+    .filter(item => item.title);
+}    },
     {
       title: "Proteina dhe rikuperimi pas stërvitjes",
       source: "NKBEASTS",
