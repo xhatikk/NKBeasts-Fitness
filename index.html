@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#05070a">
+  <meta name="description" content="NKBEASTS Fitness — stërvitje, ushqim, kalkulatorë, lajme dhe radio live.">
+  <title>NKBEASTS Fitness</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4657437480810919"
+    crossorigin="anonymous"></script>
+
+  <style>
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:96px}
+    :root{--gold:#e4b43d;--gold2:#f0c85e;--bg:#05070a;--panel:#0a0e13;--line:#202730;--text:#f6f2e9;--muted:#9aa2ad}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif}
+    a{text-decoration:none;color:inherit}
+    button,input,select{font:inherit}
+    section[id]{scroll-margin-top:96px}
+
+    .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:28px;height:78px;padding:0 3.5vw;background:rgba(5,7,10,.96);border-bottom:1px solid #232831}
+    .logo{display:flex;align-items:center;gap:10px;min-width:max-content}
+    .crown{font-size:38px;color:var(--gold)}
+    .logo b{font-size:20px;letter-spacing:1px}
+    .logo small{display:block;margin-top:2px;color:var(--gold);font-size:8px;letter-spacing:2px}
+    .topbar nav{display:flex;align-items:center;gap:23px;margin-left:auto}
+    .topbar nav a{font-size:11px;font-weight:800;color:#d7d9dd}
+    .topbar nav a:hover,.topbar nav a.active{color:var(--gold)}
+    .language-switch{display:flex;gap:6px}
+    .language-switch button{width:38px;height:38px;border:1px solid #303640;border-radius:50%;background:#090c10;color:#ddd;font-size:10px;font-weight:800;cursor:pointer}
+    .language-switch button.active{background:var(--gold);color:#111;border-color:var(--gold)}
+    .menu-btn{display:none;margin-left:auto;border:0;background:none;color:white;font-size:25px}
+
+    .hero{position:relative;min-height:640px;background:url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1900&q=88') center/cover;display:flex;align-items:center;padding:70px 4vw}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,3,5,.96) 0%,rgba(2,3,5,.78) 40%,rgba(2,3,5,.22) 72%,rgba(2,3,5,.08))}
+    .hero-content{position:relative;z-index:2;max-width:720px}
+    .eyebrow,.kicker{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--gold)}
+    .hero h1{font:clamp(64px,7.5vw,112px)/.9 "Bebas Neue";margin:18px 0}
+    .hero h1 span,.hero h1 em{display:block;font-style:normal}
+    .hero h1 em{color:var(--gold)}
+    .hero-text{max-width:610px;color:#c6cbd1;line-height:1.7}
+    .hero-actions{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border:1px solid var(--gold);font-weight:800;cursor:pointer}
+    .gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111;border-color:var(--gold)}
+    .ghost{border-color:#48505a;color:#fff;background:rgba(5,7,10,.48)}
+
+    .feature-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;padding:0 4vw;transform:translateY(-70px);position:relative;z-index:5}
+    .feature-card{display:flex;gap:14px;min-height:150px;padding:24px 20px;background:linear-gradient(145deg,#0c1118,#080b10);border:1px solid #1f2832;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+    .feature-card>span{font-size:30px}
+    .feature-card h3{margin:0 0 9px;font-size:17px}
+    .feature-card p{margin:0 0 15px;color:var(--muted);font-size:12px;line-height:1.55}
+    .feature-card b{color:var(--gold);font-size:12px}
+
+    .radio-strip{margin:-42px 4vw 0;display:grid;grid-template-columns:1.4fr .8fr 1fr;align-items:center;gap:24px;padding:26px 28px;background:linear-gradient(90deg,#0a0f15,#080b10);border:1px solid #26303b;border-radius:12px}
+    .radio-title,.radio-controls{display:flex;align-items:center;gap:16px}
+    .radio-title>span{font-size:38px}
+    .radio-title h2{margin:0 0 4px;font-size:20px}
+    .radio-title p{margin:0;color:var(--muted);font-size:12px}
+    .radio-play{width:58px;height:58px;border:0;border-radius:50%;background:var(--gold);color:#111;font-size:20px;cursor:pointer}
+    .radio-controls small{display:block;color:#ff3b3b;font-weight:800}
+    .radio-controls strong{font-size:18px}
+    .wave{height:60px;display:flex;align-items:center;justify-content:flex-end;gap:5px}
+    .wave i{width:4px;border-radius:4px;background:var(--gold);height:18px}
+    .wave i:nth-child(2n){height:40px}
+    .wave i:nth-child(3n){height:28px}
+    .wave.live i{animation:wave .8s ease-in-out infinite alternate}
+    .wave.live i:nth-child(2n){animation-delay:.15s}
+    .wave.live i:nth-child(3n){animation-delay:.3s}
+    @keyframes wave{from{transform:scaleY(.5)}to{transform:scaleY(1.25)}}
+
+    .genre-row{display:flex;gap:9px;flex-wrap:wrap;padding:18px 4vw 0}
+    .genre{padding:10px 15px;border:1px solid #2f3741;border-radius:99px;background:#0a0e13;color:#c6cbd1;font-weight:700;cursor:pointer}
+    .genre.active,.genre:hover{background:var(--gold);color:#111;border-color:var(--gold)}
+
+    .section{padding:85px 4vw}
+    .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px}
+    .section h2{font:clamp(44px,5vw,72px)/.9 "Bebas Neue";margin:8px 0}
+    .workout-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .workout-card{position:relative;min-height:410px;overflow:hidden;border-radius:12px;background:var(--card-bg) center/cover no-repeat}
+    .workout-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.95),rgba(0,0,0,.05) 75%)}
+    .workout-card>div{position:absolute;z-index:2;left:24px;right:24px;bottom:24px}
+    .workout-card small{color:var(--gold);font-weight:800}
+    .workout-card h3{font:48px "Bebas Neue";margin:6px 0}
+    .workout-card p{color:#c7ccd2}
+    .plan-btn{padding:12px 17px;border:1px solid var(--gold);background:var(--gold);color:#111;font-weight:800;cursor:pointer}
+
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .split>img{width:100%;height:560px;object-fit:cover;border-radius:12px}
+    .split>div>p{color:#b8bec7;line-height:1.7}
+    .nutri-points article,.nutri-points a{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid #252c34;cursor:pointer;transition:.2s ease}
+    .nutri-points article:hover,.nutri-points article:focus-visible,.nutri-points a:hover,.nutri-points a:focus-visible{padding-left:10px;background:linear-gradient(90deg,rgba(240,185,46,.08),transparent);outline:none}
+    .nutri-points b{color:var(--gold)}
+    .nutri-points span{display:flex;flex-direction:column;flex:1}
+    .nutri-points small{color:var(--muted);margin-top:5px}
+    .nutri-points article:after,.nutri-points a:after{content:"→";margin-left:auto;color:var(--gold);font-size:22px;align-self:center}
+    .nutrition-guide h4{margin:25px 0 10px;color:var(--gold);font-size:14px;text-transform:uppercase;letter-spacing:.08em}
+    .nutrition-guide p,.nutrition-guide li{color:#c4cad1;line-height:1.65}
+    .nutrition-guide ul{padding-left:20px}
+    .nutrition-guide .macro-box{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+    .nutrition-guide .macro-box div{padding:14px;border:1px solid #303944;border-radius:9px;background:#070a0e}
+    .nutrition-guide .macro-box b{display:block;color:var(--gold);font-size:19px}
+    .nutrition-guide .good-bad{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .nutrition-guide .good-bad>div{padding:16px;border:1px solid #303944;border-radius:9px}
+    .nutrition-guide .notice{margin-top:20px;padding:14px;border-left:3px solid var(--gold);background:#11161d;color:#d7dbe0}
+
+    .calc-tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
+    .calc-tab{padding:11px 18px;border:1px solid #303843;background:#0a0e13;color:#cbd0d6;font-weight:800;cursor:pointer}
+    .calc-tab.active{background:var(--gold);color:#111}
+    .calc-panel{display:none;grid-template-columns:repeat(3,minmax(150px,1fr));gap:14px;padding:25px;background:#0a0e13;border:1px solid #202731;border-radius:12px}
+    .calc-panel.active{display:grid}
+    .calc-panel label{display:flex;flex-direction:column;gap:8px;color:#aeb5be;font-size:12px}
+    .calc-panel input,.calc-panel select{height:46px;padding:0 12px;border:1px solid #303843;background:#05070a;color:#fff}
+    .calc-panel output{grid-column:-2/-1;grid-row:1/4;display:flex;flex-direction:column;align-items:center;justify-content:center;border-left:1px solid #27303a}
+    .calc-panel output b{font:68px "Bebas Neue";color:var(--gold)}
+    .calc-panel output span{color:var(--muted)}
+
+    .text-btn{border:0;background:none;color:var(--gold);font-weight:800;cursor:pointer}
+    .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .news-card{overflow:hidden;background:#0a0e13;border:1px solid #222b34;border-radius:12px}
+    .news-card img{width:100%;height:220px;object-fit:cover}
+    .news-card div{padding:20px}
+    .news-card small{color:var(--gold);font-weight:800}
+    .news-card h3{min-height:48px;font-size:17px;line-height:1.45}
+    .news-card a{color:var(--gold);font-weight:800}
+    .loading{color:var(--muted)}
+
+    .library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .library-grid article,.library-grid .library-card{display:block;padding:30px;background:#0a0e13;border:1px solid #222b34;border-radius:12px;transition:.2s ease}.library-grid .library-card:hover{border-color:var(--gold);transform:translateY(-3px)}.library-grid .library-card b{color:var(--gold)}
+    .library-grid span{font-size:34px}
+    .library-grid p{color:var(--muted)}
+
+    .stats{margin:0 4vw 55px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:26px;border:1px solid #252d37;border-radius:12px;background:#090d12}
+    .stats div{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:0 13px;align-items:center;padding:10px 20px;border-right:1px solid #272e37}
+    .stats div:last-child{border:0}
+    .stats span{grid-row:1/3;font-size:30px}
+    .stats b{font-size:24px}
+    .stats small{color:var(--muted)}
+
+    footer{position:relative;display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px;padding:50px 4vw 85px;border-top:1px solid #262d36;background:#040609}
+    footer h4{color:var(--gold);font-size:12px}
+    footer a:not(.logo){display:block;margin:10px 0;color:#aeb4bc;font-size:12px}
+    .footer-brand p{max-width:280px;color:#9098a2;font-size:12px;line-height:1.6}
+    .copyright{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#777;font-size:12px}
+
+    .social-links{display:grid;grid-template-columns:repeat(2,minmax(120px,1fr));gap:10px;margin-top:20px;max-width:340px}
+    footer .social-links .social{display:flex;align-items:center;gap:9px;margin:0;padding:10px 12px;border:1px solid #303844;border-radius:10px;background:#0b1016;color:#f3f5f7;font-size:12px;font-weight:700}
+    footer .social-links .social:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+    .social-icon{width:25px;height:25px;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;background:var(--gold);color:#05070a;font-size:15px;font-weight:900}
+    .footer-info-btn{display:block;border:0;background:transparent;color:#aeb4bc;margin:10px 0;padding:0;cursor:pointer;text-align:left;font:inherit;font-size:12px}
+    .footer-info-btn:hover{color:var(--gold)}
+
+    .modal{position:fixed;inset:0;z-index:9999;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.84)}
+    .modal.open{display:grid}
+    .modal-card{position:relative;width:min(620px,100%);max-height:85vh;overflow:auto;padding:30px;background:#0a0e13;border:1px solid #313944;border-radius:12px}
+    .close{position:absolute;right:14px;top:10px;border:0;background:none;color:white;font-size:30px}
+    .exercise{display:grid;grid-template-columns:1fr auto auto;gap:14px;padding:13px 0;border-bottom:1px solid #2b333d}
+
+    .back-to-top{position:fixed;right:18px;bottom:20px;z-index:90;width:46px;height:46px;border:1px solid var(--gold);border-radius:50%;background:#090d12;color:var(--gold);font-size:22px;font-weight:900;opacity:0;pointer-events:none;transform:translateY(10px);transition:.2s ease}
+    .back-to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+    @media(max-width:1050px){
+      .topbar nav{gap:13px}.topbar nav a{font-size:10px}
+      .feature-grid{grid-template-columns:repeat(3,1fr)}
+      .radio-strip{grid-template-columns:1fr 1fr}
+      .wave{grid-column:1/-1;justify-content:center}
+      .workout-grid{grid-template-columns:1fr 1fr}
+      .workout-card:last-child{grid-column:1/-1}
+    }
+    @media(max-width:780px){
+      html{scroll-padding-top:82px}
+      section[id]{scroll-margin-top:82px}
+      .topbar{padding:0 18px}
+      .menu-btn{display:block}
+      .topbar nav{display:none;position:absolute;top:78px;left:0;right:0;padding:20px;background:#06080b;flex-direction:column;align-items:flex-start}
+      .topbar nav.open{display:flex}
+      .hero{min-height:600px;padding:60px 22px}
+      .feature-grid{grid-template-columns:1fr 1fr;padding:0 22px}
+      .radio-strip{margin:-42px 22px 0;grid-template-columns:1fr}
+      .genre-row,.section{padding-left:22px;padding-right:22px}
+      .workout-grid,.split,.library-grid,.news-grid{grid-template-columns:1fr}
+      .workout-card:last-child{grid-column:auto}
+      .split>img{height:400px}
+      .calc-panel,.calc-panel.active{grid-template-columns:1fr}
+      .calc-panel output{grid-column:auto;grid-row:auto;border-left:0;border-top:1px solid #27303a;padding-top:18px}
+      .stats{margin:0 22px 45px;grid-template-columns:1fr 1fr}
+      .stats div:nth-child(2){border-right:0}
+      footer{grid-template-columns:1fr 1fr}
+      .copyright{position:static;grid-column:1/-1}
+      .social-links{grid-template-columns:1fr 1fr;max-width:none}
+    }
+    @media(max-width:480px){
+      .logo b{font-size:16px}
+      .language-switch button{width:32px;height:32px}
+      .hero h1{font-size:62px}
+      .feature-grid{grid-template-columns:1fr;transform:translateY(-40px)}
+      .radio-strip{margin-top:-12px;padding:20px}
+      .genre{flex:1 1 calc(50% - 9px)}
+      .workout-card{min-height:360px}
+      .stats{grid-template-columns:1fr}
+      .stats div{border-right:0;border-bottom:1px solid #272e37}
+      footer{grid-template-columns:1fr}
+    }
+
+    .cookie-banner{position:fixed;left:18px;right:18px;bottom:18px;z-index:9998;display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:920px;margin:auto;padding:18px 20px;background:#0b1016;border:1px solid #343d48;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.55)}
+    .cookie-banner.hidden{display:none}.cookie-banner p{margin:0;color:#c8cdd3;font-size:13px;line-height:1.55}.cookie-actions{display:flex;gap:10px;flex-shrink:0}.cookie-actions button{min-height:40px;padding:0 15px;border:1px solid #424b56;background:#10161d;color:#fff;font-weight:800;cursor:pointer}.cookie-actions .accept{background:var(--gold);border-color:var(--gold);color:#111}
+    @media(max-width:620px){.cookie-banner{align-items:stretch;flex-direction:column}.cookie-actions button{flex:1}.cookie-actions{width:100%}}
+  </style>
+</head>
+
+<body>
+<header class="topbar">
+  <a class="logo" href="#home"><span class="crown">♛</span><span><b>NKBEASTS</b><small>TRAIN. FUEL. INSPIRE.</small></span></a>
+  <button id="menuBtn" class="menu-btn" type="button" aria-label="Menu">☰</button>
+
+  <nav id="mainNav">
+    <a href="#home" data-i18n="home">HOME</a>
+    <a href="#workouts" data-i18n="workouts">WORKOUTS</a>
+    <a href="#nutrition" data-i18n="nutrition">NUTRITION</a>
+    <a href="#calculators" data-i18n="calculators">CALCULATORS</a>
+    <a href="#news" data-i18n="news">NEWS</a>
+    <a href="#library" data-i18n="library">LIBRARY</a>
+    <a href="#radio" data-i18n="radioLive">RADIO LIVE</a>
+  </nav>
+
+  <div class="language-switch">
+    <button type="button" data-lang="sq">SQ</button>
+    <button type="button" data-lang="de">DE</button>
+    <button type="button" data-lang="en">EN</button>
+  </div>
+</header>
+
+<main>
+  <section id="home" class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="eyebrow" data-i18n="platform">PLATFORMA GLOBALE E FITNESIT</p>
+      <h1><span data-i18n="beStrong">Bëhu më i fortë.</span><em data-i18n="liveBetter">Jeto më mirë.</em></h1>
+      <p class="hero-text" data-i18n="heroText">Stërvitje, ushqim, kalkulatorë, lajme të freskëta dhe motivim — të gjitha në një platformë premium.</p>
+      <div class="hero-actions">
+        <a class="btn gold" href="#workouts" data-i18n="startTraining">Fillo stërvitjen →</a>
+        <a class="btn ghost" href="#features" data-i18n="explore">Eksploro platformën</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="feature-grid">
+    <a href="#workouts" class="feature-card"><span>🏋</span><div><h3 data-i18n="training">Stërvitje</h3><p data-i18n="trainingText">Programe për çdo nivel dhe qëllim.</p><b data-i18n="open">Hape →</b></div></a>
+    <a href="#nutrition" class="feature-card"><span>🥗</span><div><h3 data-i18n="food">Ushqim</h3><p data-i18n="foodText">Ushqim i shëndetshëm dhe udhëzime praktike.</p><b data-i18n="open">Hape →</b></div></a>
+    <a href="#calculators" class="feature-card"><span>🧮</span><div><h3 data-i18n="calculators">Kalkulatorë</h3><p data-i18n="calcText">BMI, kalori, proteina dhe ujë ditor.</p><b data-i18n="open">Hape →</b></div></a>
+    <a href="#news" class="feature-card"><span>📰</span><div><h3 data-i18n="liveNews">Lajme Live</h3><p data-i18n="newsText">Lajme të freskëta për fitnes dhe shëndet.</p><b data-i18n="open">Hape →</b></div></a>
+    <a href="#library" class="feature-card"><span>📖</span><div><h3 data-i18n="library">Library</h3><p data-i18n="libraryText">Artikuj, guida dhe burime të vlefshme.</p><b data-i18n="open">Hape →</b></div></a>
+  </section>
+
+  <section id="radio" class="radio-strip">
+    <div class="radio-title"><span>🎧</span><div><h2>NK RADIO LIVE</h2><p data-i18n="radioText">Muzikë motivuese 24/7 për stërvitjen tënde.</p></div></div>
+    <div class="radio-controls">
+      <button id="radioPlay" class="radio-play" type="button">▶</button>
+      <div><small id="radioStatus">READY</small><strong id="radioName">Hip-Hop</strong></div>
+    </div>
+    <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <audio id="radioAudio" preload="none"></audio>
+  </section>
+
+  <section class="genre-row" aria-label="Radio genres">
+    <button class="genre active" type="button" data-name="Hip-Hop" data-url="https://wdr-1live-hiphoprnb.icecast.wdr.de/wdr/1live/hiphoprnb/mp3/128/stream.mp3">Hip-Hop</button>
+    <button class="genre" type="button" data-name="Rock" data-url="https://wdr-1live-rockhits.icecast.wdr.de/wdr/1live/rockhits/mp3/128/stream.mp3">Rock</button>
+    <button class="genre" type="button" data-name="Dance" data-url="https://wdr-1live-dancehits.icecast.wdr.de/wdr/1live/dancehits/mp3/128/stream.mp3">Dance</button>
+    <button class="genre" type="button" data-name="Techno" data-url="https://wdr-1live-mixderwoche.icecast.wdr.de/wdr/1live/mixderwoche/mp3/128/stream.mp3">Techno</button>
+    <button class="genre" type="button" data-name="Drum & Bass" data-url="https://wdr-1live-diggi.icecastssl.wdr.de/wdr/1live/diggi/mp3/128/stream.mp3">Drum & Bass</button>
+    <button class="genre" type="button" data-name="Pop" data-url="https://wdr-1live-tophits.icecast.wdr.de/wdr/1live/tophits/mp3/128/stream.mp3">Pop</button>
+    <button class="genre" type="button" data-name="Workout" data-url="https://wdr-1live-live.icecastssl.wdr.de/wdr/1live/live/mp3/128/stream.mp3">Workout</button>
+    <button class="genre" type="button" data-name="Chill" data-url="https://wdr-1live-chillout.icecast.wdr.de/wdr/1live/chillout/mp3/128/stream.mp3">Chill</button>
+  </section>
+
+  <section id="workouts" class="section">
+    <div class="section-head"><div><p class="kicker">WORKOUTS</p><h2 data-i18n="programs">PROGRAMET KRYESORE</h2></div></div>
+    <div class="workout-grid">
+      <article class="workout-card" style="--card-bg:url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=85')"><div><small>UPPER BODY</small><h3>PUSH DAY</h3><p data-i18n="pushText">Gjoks, shpatulla dhe triceps.</p><button class="plan-btn" data-plan="push" type="button" data-i18n="openPlan">Hap planin</button></div></article>
+      <article class="workout-card" style="--card-bg:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1200&q=85')"><div><small>BACK & ARMS</small><h3>PULL DAY</h3><p data-i18n="pullText">Shpinë, biceps dhe rear delts.</p><button class="plan-btn" data-plan="pull" type="button" data-i18n="openPlan">Hap planin</button></div></article>
+      <article class="workout-card" style="--card-bg:url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=1200&q=85')"><div><small>LOWER BODY</small><h3>LEGS & CORE</h3><p data-i18n="legsText">Këmbë të forta dhe core stabil.</p><button class="plan-btn" data-plan="legs" type="button" data-i18n="openPlan">Hap planin</button></div></article>
+    </div>
+  </section>
+
+  <section id="nutrition" class="section split">
+    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=1200&q=85" alt="Healthy foods">
+    <div>
+      <p class="kicker">NUTRITION</p>
+      <h2 data-i18n="eatSmarter">USHQEHU MË MENÇUR</h2>
+      <p data-i18n="nutritionIntro">Ushqimi i mirë është themeli i performancës. Mbaji vaktet të thjeshta, të pasura me proteina dhe me ushqime të plota.</p>
+      <div class="nutri-points">
+        <a class="nutrition-topic" data-topic="protein" href="articles.html?topic=protein"><b>01</b><span><strong data-i18n="protein">Proteina</strong><small data-i18n="proteinText">Rikuperim dhe rritje muskulore.</small></span></a>
+        <a class="nutrition-topic" data-topic="carbs" href="articles.html?topic=carbs"><b>02</b><span><strong data-i18n="carbs">Karbohidrate</strong><small data-i18n="carbsText">Energji për stërvitje.</small></span></a>
+        <a class="nutrition-topic" data-topic="fats" href="articles.html?topic=fats"><b>03</b><span><strong data-i18n="fats">Yndyrna të mira</strong><small data-i18n="fatsText">Shëndet hormonal dhe qelizor.</small></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculators" class="section">
+    <div class="section-head"><div><p class="kicker">CALCULATORS</p><h2 data-i18n="yourNumbers">NUMRAT E TU</h2></div></div>
+
+    <div class="calc-tabs">
+      <button class="calc-tab active" data-target="bmiPanel" type="button">BMI</button>
+      <button class="calc-tab" data-target="tdeePanel" type="button">TDEE</button>
+      <button class="calc-tab" data-target="proteinPanel" type="button">PROTEIN</button>
+      <button class="calc-tab" data-target="waterPanel" type="button">WATER</button>
+    </div>
+
+    <div class="calc-panel active" id="bmiPanel">
+      <label><span data-i18n="height">Gjatësia (cm)</span><input id="bmiHeight" type="number" value="178"></label>
+      <label><span data-i18n="weight">Pesha (kg)</span><input id="bmiWeight" type="number" value="81"></label>
+      <button id="bmiBtn" class="btn gold" type="button" data-i18n="calculate">Llogarit</button>
+      <output><small>BMI</small><b id="bmiValue">—</b><span id="bmiLabel">—</span></output>
+    </div>
+
+    <div class="calc-panel" id="tdeePanel">
+      <label><span data-i18n="gender">Gjinia</span><select id="gender"><option value="male" data-i18n="male">Mashkull</option><option value="female" data-i18n="female">Femër</option></select></label>
+      <label><span data-i18n="age">Mosha</span><input id="age" type="number" value="45"></label>
+      <label><span data-i18n="height">Gjatësia (cm)</span><input id="tdeeHeight" type="number" value="178"></label>
+      <label><span data-i18n="weight">Pesha (kg)</span><input id="tdeeWeight" type="number" value="81"></label>
+      <label><span data-i18n="activity">Aktiviteti</span><select id="activity"><option value="1.2">Low</option><option value="1.375">Light</option><option value="1.55" selected>Moderate</option><option value="1.725">High</option></select></label>
+      <button id="tdeeBtn" class="btn gold" type="button" data-i18n="calculate">Llogarit</button>
+      <output><small>TDEE</small><b id="tdeeValue">—</b><span>kcal/day</span></output>
+    </div>
+
+    <div class="calc-panel" id="proteinPanel">
+      <label><span data-i18n="weight">Pesha (kg)</span><input id="proteinWeight" type="number" value="81"></label>
+      <label><span data-i18n="goal">Qëllimi</span><select id="proteinFactor"><option value="1.6">Maintain</option><option value="2" selected>Muscle</option><option value="2.2">Fat loss</option></select></label>
+      <button id="proteinBtn" class="btn gold" type="button" data-i18n="calculate">Llogarit</button>
+      <output><small>PROTEIN</small><b id="proteinValue">—</b><span>g/day</span></output>
+    </div>
+
+    <div class="calc-panel" id="waterPanel">
+      <label><span data-i18n="weight">Pesha (kg)</span><input id="waterWeight" type="number" value="81"></label>
+      <label><span data-i18n="trainingMinutes">Minuta stërvitje</span><input id="trainingMinutes" type="number" value="60"></label>
+      <button id="waterBtn" class="btn gold" type="button" data-i18n="calculate">Llogarit</button>
+      <output><small>WATER</small><b id="waterValue">—</b><span>L/day</span></output>
+    </div>
+  </section>
+
+  <section id="news" class="section">
+    <div class="section-head">
+      <div><p class="kicker">NEWS</p><h2 data-i18n="latestNews">LAJMET MË TË FUNDIT</h2></div>
+      <button id="refreshNews" class="text-btn" type="button" data-i18n="refresh">Rifresko →</button>
+    </div>
+    <div id="newsGrid" class="news-grid"><p class="loading">Loading…</p></div>
+  </section>
+
+  <section id="library" class="section">
+    <div class="section-head"><div><p class="kicker">LIBRARY</p><h2 data-i18n="knowledge">DIJE QË TË NDRYSHON</h2></div></div>
+    <div class="library-grid">
+      <a class="library-card" href="articles.html?topic=strength"><span>💪</span><h3 data-i18n="strengthGuide">Guida e forcës</h3><p data-i18n="strengthText">Bazat për progres, teknikë dhe programim.</p><b>Lexo →</b></a>
+      <a class="library-card" href="articles.html?topic=protein"><span>🥩</span><h3 data-i18n="proteinGuide">Guida e proteinës</h3><p data-i18n="proteinGuideText">Sa proteinë të duhet dhe si ta shpërndash.</p><b>Lexo →</b></a>
+      <a class="library-card" href="articles.html?topic=recovery"><span>😴</span><h3 data-i18n="recoveryGuide">Guida e rikuperimit</h3><p data-i18n="recoveryText">Gjumi, stresi dhe ditët e pushimit.</p><b>Lexo →</b></a>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><span>🌍</span><b>3</b><small>Gjuhë</small></div>
+    <div><span>🧮</span><b>4</b><small>Kalkulatorë</small></div>
+    <div><span>🏋</span><b>3</b><small>Plane stërvitjeje</small></div>
+    <div><span>🎧</span><b>24/7</b><small>Radio & motivim</small></div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <a class="logo" href="#home"><span class="crown">♛</span><span><b>NKBEASTS</b><small>FITNESS</small></span></a>
+    <p data-i18n="footerText">Platformë për fitnes, ushqim dhe jetë më të mirë.</p>
+    <div class="social-links" aria-label="Rrjetet sociale">
+      <a class="social youtube" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><span class="social-icon">▶</span><span>YouTube</span></a>
+      <a class="social facebook" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><span class="social-icon">f</span><span>Facebook</span></a>
+      <a class="social instagram" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><span class="social-icon">◎</span><span>Instagram</span></a>
+      <a class="social tiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer"><span class="social-icon">♪</span><span>TikTok</span></a>
+    </div>
+  </div>
+
+  <div><h4 data-i18n="platformLabel">PLATFORMË</h4><a href="#workouts">Workouts</a><a href="#nutrition">Nutrition</a><a href="#calculators">Calculators</a><a href="#news">News</a></div>
+  <div><h4 data-i18n="categories">KATEGORITË</h4><a href="#workouts">Forcë & Muskuj</a><a href="#nutrition">Ushqim i Pastër</a><a href="#library">Lifestyle</a></div>
+  <div>
+    <h4>INFO</h4>
+    <button class="footer-info-btn" type="button" data-info="about">Rreth Nesh</button>
+    <button class="footer-info-btn" type="button" data-info="contact">Kontakt</button>
+    <button class="footer-info-btn" type="button" data-info="privacy">Privatësia</button>
+    <button class="footer-info-btn" type="button" data-info="faq">FAQ</button>
+  </div>
+
+  <p class="copyright">© <span id="year"></span> NKBEASTS.</p>
+</footer>
+
+<div id="planModal" class="modal" aria-hidden="true">
+  <div class="modal-card">
+    <button id="closeModal" class="close" type="button">×</button>
+    <h3 id="planTitle">Workout</h3>
+    <div id="planBody"></div>
+  </div>
+</div>
+
+<div id="infoModal" class="modal" aria-hidden="true">
+  <div class="modal-card">
+    <button id="closeInfoModal" class="close" type="button">×</button>
+    <h3 id="infoTitle">NKBEASTS</h3>
+    <div id="infoBody"></div>
+  </div>
+</div>
+
+<div id="cookieBanner" class="cookie-banner hidden" role="dialog" aria-label="Cookie settings">
+  <p id="cookieText">NKBEASTS përdor vetëm ruajtje lokale për gjuhën dhe preferencat. Reklamat mund të përdorin cookies vetëm pasi t’i pranosh.</p>
+  <div class="cookie-actions"><button id="rejectCookie" type="button">Refuzo</button><button id="acceptCookie" class="accept" type="button">Prano</button></div>
+</div>
+
+<button id="backToTop" class="back-to-top" type="button" aria-label="Kthehu lart">↑</button>
+
+<script>
+  window.I18N = {
+    sq: {
+      home:"HOME", workouts:"WORKOUTS", nutrition:"NUTRITION", calculators:"CALCULATORS", news:"NEWS", library:"LIBRARY", radioLive:"RADIO LIVE",
+      platform:"PLATFORMA GLOBALE E FITNESIT", beStrong:"Bëhu më i fortë.", liveBetter:"Jeto më mirë.",
+      heroText:"Stërvitje, ushqim, kalkulatorë, lajme të freskëta dhe motivim — të gjitha në një platformë premium.",
+      startTraining:"Fillo stërvitjen →", explore:"Eksploro platformën", training:"Stërvitje", trainingText:"Programe për çdo nivel dhe qëllim.",
+      food:"Ushqim", foodText:"Ushqim i shëndetshëm dhe udhëzime praktike.", calcText:"BMI, kalori, proteina dhe ujë ditor.",
+      liveNews:"Lajme Live", newsText:"Lajme të freskëta për fitnes dhe shëndet.", libraryText:"Artikuj, guida dhe burime të vlefshme.",
+      open:"Hape →", radioText:"Muzikë motivuese 24/7 për stërvitjen tënde.", programs:"PROGRAMET KRYESORE",
+      pushText:"Gjoks, shpatulla dhe triceps.", pullText:"Shpinë, biceps dhe rear delts.", legsText:"Këmbë të forta dhe core stabil.",
+      openPlan:"Hap planin", eatSmarter:"USHQEHU MË MENÇUR", nutritionIntro:"Ushqimi i mirë është themeli i performancës. Mbaji vaktet të thjeshta, të pasura me proteina dhe me ushqime të plota.",
+      protein:"Proteina", proteinText:"Rikuperim dhe rritje muskulore.", carbs:"Karbohidrate", carbsText:"Energji për stërvitje.",
+      fats:"Yndyrna të mira", fatsText:"Shëndet hormonal dhe qelizor.", yourNumbers:"NUMRAT E TU", height:"Gjatësia (cm)",
+      weight:"Pesha (kg)", calculate:"Llogarit", gender:"Gjinia", male:"Mashkull", female:"Femër", age:"Mosha", activity:"Aktiviteti",
+      goal:"Qëllimi", trainingMinutes:"Minuta stërvitje", latestNews:"LAJMET MË TË FUNDIT", refresh:"Rifresko →",
+      knowledge:"DIJE QË TË NDRYSHON", strengthGuide:"Guida e forcës", strengthText:"Bazat për progres, teknikë dhe programim.",
+      proteinGuide:"Guida e proteinës", proteinGuideText:"Sa proteinë të duhet dhe si ta shpërndash.", recoveryGuide:"Guida e rikuperimit",
+      recoveryText:"Gjumi, stresi dhe ditët e pushimit.", footerText:"Platformë për fitnes, ushqim dhe jetë më të mirë.",
+      platformLabel:"PLATFORMË", categories:"KATEGORITË"
+    },
+    de: {
+      home:"START", workouts:"TRAINING", nutrition:"ERNÄHRUNG", calculators:"RECHNER", news:"NEWS", library:"BIBLIOTHEK", radioLive:"LIVE RADIO",
+      platform:"DIE GLOBALE FITNESS-PLATTFORM", beStrong:"Werde stärker.", liveBetter:"Lebe besser.",
+      heroText:"Training, Ernährung, Rechner, aktuelle News und Motivation — alles auf einer Premium-Plattform.",
+      startTraining:"Training starten →", explore:"Plattform entdecken", training:"Training", trainingText:"Programme für jedes Niveau und Ziel.",
+      food:"Ernährung", foodText:"Gesunde Ernährung und praktische Tipps.", calcText:"BMI, Kalorien, Protein und Wasser.",
+      liveNews:"Live News", newsText:"Aktuelle Fitness- und Gesundheitsnews.", libraryText:"Artikel, Guides und wertvolle Ressourcen.",
+      open:"Öffnen →", radioText:"Motivierende Musik rund um die Uhr für dein Training.", programs:"TOP-PROGRAMME",
+      pushText:"Brust, Schultern und Trizeps.", pullText:"Rücken, Bizeps und hintere Schulter.", legsText:"Starke Beine und stabiler Core.",
+      openPlan:"Plan öffnen", eatSmarter:"ISS SMARTER", nutritionIntro:"Gute Ernährung ist die Basis für Leistung. Halte Mahlzeiten einfach, proteinreich und vollwertig.",
+      protein:"Protein", proteinText:"Regeneration und Muskelaufbau.", carbs:"Kohlenhydrate", carbsText:"Energie fürs Training.",
+      fats:"Gesunde Fette", fatsText:"Hormone und Zellgesundheit.", yourNumbers:"DEINE ZAHLEN", height:"Größe (cm)",
+      weight:"Gewicht (kg)", calculate:"Berechnen", gender:"Geschlecht", male:"Mann", female:"Frau", age:"Alter", activity:"Aktivität",
+      goal:"Ziel", trainingMinutes:"Trainingsminuten", latestNews:"AKTUELLE NEWS", refresh:"Aktualisieren →",
+      knowledge:"WISSEN, DAS DICH VERÄNDERT", strengthGuide:"Kraft-Guide", strengthText:"Grundlagen für Fortschritt, Technik und Planung.",
+      proteinGuide:"Protein-Guide", proteinGuideText:"Wie viel Protein du brauchst und wie du es verteilst.", recoveryGuide:"Recovery-Guide",
+      recoveryText:"Schlaf, Stress und Ruhetage.", footerText:"Plattform für Fitness, Ernährung und ein besseres Leben.",
+      platformLabel:"PLATTFORM", categories:"KATEGORIEN"
+    },
+    en: {
+      home:"HOME", workouts:"WORKOUTS", nutrition:"NUTRITION", calculators:"CALCULATORS", news:"NEWS", library:"LIBRARY", radioLive:"LIVE RADIO",
+      platform:"THE GLOBAL FITNESS PLATFORM", beStrong:"Become stronger.", liveBetter:"Live better.",
+      heroText:"Training, nutrition, calculators, fresh news and motivation — all in one premium platform.",
+      startTraining:"Start training →", explore:"Explore platform", training:"Training", trainingText:"Programs for every level and goal.",
+      food:"Nutrition", foodText:"Healthy eating and practical guidance.", calcText:"BMI, calories, protein and daily water.",
+      liveNews:"Live News", newsText:"Fresh fitness and health news.", libraryText:"Articles, guides and valuable resources.",
+      open:"Open →", radioText:"Motivating music 24/7 for your workouts.", programs:"MAIN PROGRAMS",
+      pushText:"Chest, shoulders and triceps.", pullText:"Back, biceps and rear delts.", legsText:"Strong legs and a stable core.",
+      openPlan:"Open plan", eatSmarter:"EAT SMARTER", nutritionIntro:"Good nutrition is the foundation of performance. Keep meals simple, protein-rich and based on whole foods.",
+      protein:"Protein", proteinText:"Recovery and muscle growth.", carbs:"Carbohydrates", carbsText:"Energy for training.",
+      fats:"Healthy fats", fatsText:"Hormonal and cellular health.", yourNumbers:"YOUR NUMBERS", height:"Height (cm)",
+      weight:"Weight (kg)", calculate:"Calculate", gender:"Gender", male:"Male", female:"Female", age:"Age", activity:"Activity",
+      goal:"Goal", trainingMinutes:"Training minutes", latestNews:"LATEST NEWS", refresh:"Refresh →",
+      knowledge:"KNOWLEDGE THAT CHANGES YOU", strengthGuide:"Strength guide", strengthText:"The basics of progress, technique and programming.",
+      proteinGuide:"Protein guide", proteinGuideText:"How much protein you need and how to distribute it.", recoveryGuide:"Recovery guide",
+      recoveryText:"Sleep, stress and rest days.", footerText:"A platform for fitness, nutrition and a better life.",
+      platformLabel:"PLATFORM", categories:"CATEGORIES"
+    }
+  };
+
+  window.currentLang = "sq";
+
+  (() => {
+    const $ = s => document.querySelector(s);
+    const $$ = s => [...document.querySelectorAll(s)];
+
+    $("#menuBtn")?.addEventListener("click", () => $("#mainNav")?.classList.toggle("open"));
+    $$("#mainNav a").forEach(a => a.addEventListener("click", () => $("#mainNav")?.classList.remove("open")));
+
+    function detectLanguage() {
+      const saved = localStorage.getItem("nk-lang");
+      if (saved) return saved;
+      const browser = (navigator.language || "en").toLowerCase();
+      return browser.startsWith("de") ? "de" : browser.startsWith("sq") ? "sq" : "en";
+    }
+
+    window.applyLanguage = lang => {
+      if (!window.I18N[lang]) lang = "sq";
+      window.currentLang = lang;
+      localStorage.setItem("nk-lang", lang);
+      document.documentElement.lang = lang;
+
+      $$("[data-i18n]").forEach(el => {
+        const text = window.I18N[lang][el.dataset.i18n];
+        if (text) el.textContent = text;
+      });
+
+      $$("[data-lang]").forEach(button => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+
+      window.dispatchEvent(new CustomEvent("nk-language-change", { detail: { lang } }));
+    };
+
+    $$("[data-lang]").forEach(button => {
+      button.addEventListener("click", () => window.applyLanguage(button.dataset.lang));
+    });
+
+    window.applyLanguage(detectLanguage());
+    $("#year").textContent = new Date().getFullYear();
+
+    const plans = {
+      push:[["Bench Press","3","5–8"],["Incline Dumbbell Press","3","8–12"],["Chest Fly","3","10–15"],["Lateral Raise","3","10–15"],["Triceps Extension","3","10–15"]],
+      pull:[["Bent Over Row","3","6–8"],["Lat Pulldown","3","8–12"],["Cable Row","3","10–12"],["Rear Delt Fly","3","12–15"],["Bayesian Curl","3","10–15"]],
+      legs:[["Back Squat","3","5–8"],["Romanian Deadlift","3","8–10"],["Leg Press","3","10–15"],["Walking Lunges","3","10/leg"],["Plank","3","45–60 sec"]]
+    };
+
+    $$("[data-plan]").forEach(button => {
+      button.addEventListener("click", () => {
+        const key = button.dataset.plan;
+        const modal = $("#planModal");
+        $("#planTitle").textContent = key === "push" ? "Push Day" : key === "pull" ? "Pull Day" : "Legs & Core";
+        $("#planBody").innerHTML = plans[key].map(item =>
+          `<div class="exercise"><strong>${item[0]}</strong><span>${item[1]} sets</span><span>${item[2]}</span></div>`
+        ).join("");
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+      });
+    });
+
+    function closePlan() {
+      const modal = $("#planModal");
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    $("#closeModal")?.addEventListener("click", closePlan);
+    $("#planModal")?.addEventListener("click", event => {
+      if (event.target.id === "planModal") closePlan();
+    });
+  })();
+
+  (() => {
+    const header = document.querySelector(".topbar");
+    const nav = document.getElementById("mainNav");
+    const back = document.getElementById("backToTop");
+    const modal = document.getElementById("infoModal");
+    const title = document.getElementById("infoTitle");
+    const body = document.getElementById("infoBody");
+    const closeButton = document.getElementById("closeInfoModal");
+
+    function goTo(id, changeHash = true) {
+      const target = document.getElementById(id);
+      if (!target) return;
+      const headerHeight = header ? header.offsetHeight : 0;
+      const top = target.getBoundingClientRect().top + window.scrollY - headerHeight - 14;
+      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      if (changeHash) history.pushState(null, "", "#" + id);
+      nav?.classList.remove("open");
+    }
+
+    document.addEventListener("click", event => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+      const href = link.getAttribute("href");
+      if (!href || href === "#") {
+        event.preventDefault();
+        return;
+      }
+      const id = href.slice(1);
+      if (document.getElementById(id)) {
+        event.preventDefault();
+        goTo(id);
+      }
+    });
+
+    window.addEventListener("load", () => {
+      const id = location.hash.slice(1);
+      if (id && document.getElementById(id)) setTimeout(() => goTo(id, false), 100);
+    });
+
+    function updateNav() {
+      const marker = window.scrollY + (header?.offsetHeight || 0) + 120;
+      let active = "home";
+
+      document.querySelectorAll("main section[id]").forEach(section => {
+        if (section.offsetTop <= marker) active = section.id;
+      });
+
+      document.querySelectorAll('#mainNav a[href^="#"]').forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + active);
+      });
+
+      back?.classList.toggle("show", window.scrollY > 600);
+    }
+
+    window.addEventListener("scroll", updateNav, { passive: true });
+    updateNav();
+    back?.addEventListener("click", () => goTo("home"));
+
+    const nutritionGuides = {
+      sq: {
+        protein: ["PROTEINA — GUIDA E PLOTË", `<div class="nutrition-guide"><p>Proteinat janë materiali ndërtues i muskujve, enzimave dhe shumë indeve të trupit. Ato ndihmojnë rikuperimin dhe ngopjen, por nuk zëvendësojnë një dietë të balancuar.</p><h4>Sa duhet të konsumosh?</h4><div class="macro-box"><div><b>0.8 g/kg</b>minimumi i përgjithshëm</div><div><b>1.2–1.6 g/kg</b>person aktiv</div><div><b>1.6–2.2 g/kg</b>rritje muskulore</div><div><b>1.8–2.4 g/kg</b>deficit kalorik</div></div><p><strong>Shembull:</strong> 80 kg × 1.8 g = rreth 144 g proteinë në ditë.</p><h4>Burime të mira</h4><ul><li>Pulë, gjeldeti, mish pa shumë dhjamë</li><li>Peshk, vezë, kos grek dhe gjizë</li><li>Fasule, thjerrëza, tofu dhe produkte soje</li><li>Whey protein vetëm si plotësim praktik</li></ul><h4>Si ta shpërndash?</h4><p>Ndarja në 3–5 vakte me rreth 25–45 g për vakt është zakonisht më praktike sesa konsumimi i shumicës në një vakt.</p><div class="notice">Sasia ideale varet nga pesha, aktiviteti, kaloritë dhe gjendja shëndetësore.</div></div>`],
+        carbs: ["KARBOHIDRATET — ENERGJIA E TRUPIT", `<div class="nutrition-guide"><p>Karbohidratet janë burimi kryesor dhe më i shpejtë i energjisë, sidomos për stërvitje intensive. Ato nuk janë armiku; problemi zakonisht është teprica e kalorive dhe cilësia e dobët e ushqimit.</p><h4>Sa duhet të konsumosh?</h4><div class="macro-box"><div><b>2–3 g/kg</b>aktivitet i ulët</div><div><b>3–5 g/kg</b>fitness i rregullt</div><div><b>5–7 g/kg</b>stërvitje e lartë</div><div><b>6–10 g/kg</b>sport qëndrueshmërie</div></div><p><strong>Shembull:</strong> 80 kg × 3 g = rreth 240 g karbohidrate në ditë.</p><h4>Zgjidh më shpesh</h4><ul><li>Tërshërë, oriz, patate dhe drithëra integrale</li><li>Fruta, perime dhe bishtajore</li><li>Bukë ose makarona integrale sipas kalorive</li></ul><h4>Kufizo</h4><ul><li>Pije me sheqer, ëmbëlsira dhe biskota industriale</li><li>Porcione shumë të mëdha pa aktivitet të mjaftueshëm</li></ul><div class="notice">Rregullo sasinë sipas performancës, urisë dhe objektivit kalorik—jo sipas frikës nga karbohidratet.</div></div>`],
+        fats: ["YNDYRNAT — TË MIRAT DHE ATO QË DUHEN KUFIZUAR", `<div class="nutrition-guide"><p>Yndyrnat janë të domosdoshme për hormonet, trurin, membranat qelizore dhe përthithjen e vitaminave A, D, E dhe K. Por janë shumë kalorike: 1 gram ka 9 kcal.</p><h4>Sa duhet të konsumosh?</h4><div class="macro-box"><div><b>0.6 g/kg</b>minimum praktik</div><div><b>0.8–1.2 g/kg</b>interval i zakonshëm</div></div><p><strong>Shembull:</strong> 80 kg × 0.8 g = rreth 64 g yndyrë në ditë.</p><div class="good-bad"><div><h4>✅ Zgjidh më shpesh</h4><ul><li>Vaj ulliri</li><li>Arra dhe fara</li><li>Avokado</li><li>Salmon, sardele, skumbri</li></ul></div><div><h4>⚠️ Kufizo</h4><ul><li>Yndyrna trans</li><li>Ushqime të skuqura shpesh</li><li>Produkte industriale dhe fast food</li><li>Mishra shumë të përpunuar</li></ul></div></div><h4>Po yndyrnat e ngopura?</h4><p>Nuk duhen eliminuar plotësisht, por mbaji të moderuara dhe zëvendëso një pjesë me yndyrna të pangopura.</p><div class="notice">“E mirë” nuk do të thotë pa kufi. Edhe arrat dhe vaji i ullirit mund të çojnë shpejt në tepricë kalorike.</div></div>`]
+      },
+      de: {
+        protein:["PROTEIN — KOMPLETTER GUIDE",`<div class="nutrition-guide"><p>Protein unterstützt Muskelerhalt, Regeneration und Sättigung.</p><h4>Empfohlene Menge</h4><div class="macro-box"><div><b>0,8 g/kg</b>allgemeines Minimum</div><div><b>1,2–1,6 g/kg</b>aktive Personen</div><div><b>1,6–2,2 g/kg</b>Muskelaufbau</div><div><b>1,8–2,4 g/kg</b>Kaloriendefizit</div></div><h4>Gute Quellen</h4><ul><li>Geflügel, Fisch, Eier, Magerquark</li><li>Hülsenfrüchte, Tofu und Soja</li><li>Proteinshakes nur als praktische Ergänzung</li></ul><div class="notice">Der Bedarf hängt von Körpergewicht, Training, Kalorienzufuhr und Gesundheit ab.</div></div>`],
+        carbs:["KOHLENHYDRATE — ENERGIE FÜR LEISTUNG",`<div class="nutrition-guide"><p>Kohlenhydrate liefern schnelle Energie, besonders bei intensivem Training.</p><h4>Orientierung</h4><div class="macro-box"><div><b>2–3 g/kg</b>wenig aktiv</div><div><b>3–5 g/kg</b>regelmäßiges Fitness</div><div><b>5–7 g/kg</b>hohe Belastung</div><div><b>6–10 g/kg</b>Ausdauersport</div></div><h4>Bevorzugen</h4><ul><li>Haferflocken, Reis, Kartoffeln, Vollkorn</li><li>Obst, Gemüse und Hülsenfrüchte</li></ul><h4>Begrenzen</h4><ul><li>Zuckergetränke und stark verarbeitete Süßwaren</li></ul><div class="notice">Entscheidend sind Gesamtenergie, Portionsgröße und Lebensmittelqualität.</div></div>`],
+        fats:["FETTE — GUTE WAHLEN UND GRENZEN",`<div class="nutrition-guide"><p>Fette sind wichtig für Hormone, Gehirn und fettlösliche Vitamine. Ein Gramm liefert 9 kcal.</p><h4>Orientierung</h4><div class="macro-box"><div><b>0,6 g/kg</b>praktisches Minimum</div><div><b>0,8–1,2 g/kg</b>üblicher Bereich</div></div><div class="good-bad"><div><h4>✅ Häufiger</h4><ul><li>Olivenöl, Nüsse, Samen</li><li>Avocado und fetter Fisch</li></ul></div><div><h4>⚠️ Begrenzen</h4><ul><li>Transfette, Frittiertes</li><li>Fast Food und stark verarbeitetes Fleisch</li></ul></div></div><div class="notice">Auch gesunde Fette sind kalorienreich und sollten portioniert werden.</div></div>`]
+      },
+      en: {
+        protein:["PROTEIN — COMPLETE GUIDE",`<div class="nutrition-guide"><p>Protein supports muscle repair, maintenance, and satiety.</p><h4>Daily target</h4><div class="macro-box"><div><b>0.8 g/kg</b>general minimum</div><div><b>1.2–1.6 g/kg</b>active people</div><div><b>1.6–2.2 g/kg</b>muscle gain</div><div><b>1.8–2.4 g/kg</b>calorie deficit</div></div><h4>Good sources</h4><ul><li>Poultry, fish, eggs, Greek yogurt</li><li>Beans, lentils, tofu, and soy</li><li>Protein powder as a convenient supplement</li></ul><div class="notice">Needs vary with body weight, training, calories, and health.</div></div>`],
+        carbs:["CARBOHYDRATES — PERFORMANCE FUEL",`<div class="nutrition-guide"><p>Carbohydrates provide fast energy, especially for demanding training.</p><h4>Daily range</h4><div class="macro-box"><div><b>2–3 g/kg</b>low activity</div><div><b>3–5 g/kg</b>regular fitness</div><div><b>5–7 g/kg</b>high training load</div><div><b>6–10 g/kg</b>endurance sport</div></div><h4>Choose more often</h4><ul><li>Oats, rice, potatoes, whole grains</li><li>Fruit, vegetables, and legumes</li></ul><h4>Limit</h4><ul><li>Sugary drinks and heavily processed sweets</li></ul><div class="notice">Total calories, portions, and food quality matter more than fear of carbohydrates.</div></div>`],
+        fats:["FATS — BETTER CHOICES AND LIMITS",`<div class="nutrition-guide"><p>Fat supports hormones, brain health, cell function, and fat-soluble vitamins. One gram provides 9 kcal.</p><h4>Daily range</h4><div class="macro-box"><div><b>0.6 g/kg</b>practical minimum</div><div><b>0.8–1.2 g/kg</b>common range</div></div><div class="good-bad"><div><h4>✅ Choose more often</h4><ul><li>Olive oil, nuts, seeds</li><li>Avocado and oily fish</li></ul></div><div><h4>⚠️ Limit</h4><ul><li>Trans fats and frequent fried foods</li><li>Fast food and processed meats</li></ul></div></div><div class="notice">Healthy fat is still calorie-dense, so portions matter.</div></div>`]
+      }
+    };
+
+    window.openNutritionGuide = function(topic) {
+      const lang = window.currentLang || localStorage.getItem("nk-lang") || "sq";
+      const item = nutritionGuides[lang]?.[topic] || nutritionGuides.sq[topic];
+      if (!item || !modal) return;
+      title.textContent = item[0];
+      body.innerHTML = item[1];
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+
+    const info = {
+      about:["Rreth NKBEASTS","<p>NKBEASTS është platformë për stërvitje, ushqim, kalkulatorë, lajme dhe motivim.</p>"],
+      contact:["Kontakt",'<p>Email: <a href="mailto:xhatikk@hotmail.com">xhatikk@hotmail.com</a></p>'],
+      privacy:["Privatësia","<p>Kalkulatorët punojnë direkt në pajisjen tënde. Zgjedhja e gjuhës ruhet lokalisht. Për reklamat dhe pëlqimin përdoret mesazhi zyrtar i Google.</p>"],
+      faq:["FAQ","<p><strong>Si ndryshohet gjuha?</strong><br>Shtyp SQ, DE ose EN.</p><p><strong>Si hapen planet?</strong><br>Shtyp butonin Hap planin.</p>"]
+    };
+
+    document.querySelectorAll(".footer-info-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const item = info[button.dataset.info];
+        if (!item || !modal) return;
+        title.textContent = item[0];
+        body.innerHTML = item[1];
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+      });
+    });
+
+    function closeInfo() {
+      modal?.classList.remove("open");
+      modal?.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    closeButton?.addEventListener("click", closeInfo);
+    modal?.addEventListener("click", event => {
+      if (event.target === modal) closeInfo();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeInfo();
+        document.getElementById("planModal")?.classList.remove("open");
+      }
+    });
+  })();
+
+  (() => {
+    const $ = s => document.querySelector(s);
+    const $$ = s => [...document.querySelectorAll(s)];
+    const numberValue = id => Number($("#" + id)?.value) || 0;
+
+    $$(".calc-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        $$(".calc-tab").forEach(item => item.classList.remove("active"));
+        $$(".calc-panel").forEach(item => item.classList.remove("active"));
+        tab.classList.add("active");
+        $("#" + tab.dataset.target)?.classList.add("active");
+      });
+    });
+
+    $("#bmiBtn")?.addEventListener("click", () => {
+      const height = numberValue("bmiHeight") / 100;
+      const value = height > 0 ? numberValue("bmiWeight") / (height ** 2) : 0;
+      $("#bmiValue").textContent = value ? value.toFixed(1) : "—";
+      $("#bmiLabel").textContent = !value ? "—" : value < 18.5 ? "Underweight" : value < 25 ? "Normal" : value < 30 ? "Overweight" : "Obesity";
+    });
+
+    $("#tdeeBtn")?.addEventListener("click", () => {
+      const base = 10 * numberValue("tdeeWeight") + 6.25 * numberValue("tdeeHeight") - 5 * numberValue("age") + ($("#gender").value === "male" ? 5 : -161);
+      $("#tdeeValue").textContent = Math.round(base * numberValue("activity")) || "—";
+    });
+
+    $("#proteinBtn")?.addEventListener("click", () => {
+      $("#proteinValue").textContent = Math.round(numberValue("proteinWeight") * numberValue("proteinFactor")) || "—";
+    });
+
+    $("#waterBtn")?.addEventListener("click", () => {
+      const result = numberValue("waterWeight") * 0.035 + (numberValue("trainingMinutes") / 30) * 0.35;
+      $("#waterValue").textContent = result > 0 ? result.toFixed(1) : "—";
+    });
+
+    $("#bmiBtn")?.click();
+  })();
+
+  (() => {
+    const audio = document.getElementById("radioAudio");
+    const playButton = document.getElementById("radioPlay");
+    const status = document.getElementById("radioStatus");
+    const name = document.getElementById("radioName");
+    const wave = document.querySelector(".wave");
+    const buttons = [...document.querySelectorAll(".genre")];
+
+    if (!audio || !playButton) return;
+
+    async function play() {
+      try {
+        await audio.play();
+        playButton.textContent = "Ⅱ";
+        status.textContent = "LIVE";
+        wave?.classList.add("live");
+      } catch (error) {
+        playButton.textContent = "▶";
+        status.textContent = "STREAM ERROR";
+        wave?.classList.remove("live");
+        console.warn("Radio error:", error);
+      }
+    }
+
+    function stop() {
+      audio.pause();
+      playButton.textContent = "▶";
+      status.textContent = "READY";
+      wave?.classList.remove("live");
+    }
+
+    playButton.addEventListener("click", () => audio.paused ? play() : stop());
+
+    buttons.forEach(button => {
+      button.addEventListener("click", async () => {
+        const wasPlaying = !audio.paused;
+        buttons.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        name.textContent = button.dataset.name;
+        audio.pause();
+        audio.src = button.dataset.url;
+        audio.load();
+        localStorage.setItem("nk-radio", button.dataset.name);
+        if (wasPlaying) await play();
+        else stop();
+      });
+    });
+
+    const saved = localStorage.getItem("nk-radio");
+    const selected = buttons.find(button => button.dataset.name === saved) || buttons[0];
+
+    if (selected) {
+      buttons.forEach(item => item.classList.remove("active"));
+      selected.classList.add("active");
+      name.textContent = selected.dataset.name;
+      audio.src = selected.dataset.url;
+    }
+
+    audio.addEventListener("error", () => {
+      playButton.textContent = "▶";
+      status.textContent = "STREAM ERROR";
+      wave?.classList.remove("live");
+    });
+  })();
+
+</script>
+
+  <script src="rss.js" defer></script>
+<script>
+(() => {
+  const banner = document.getElementById('cookieBanner');
+  const saved = localStorage.getItem('nk-cookie');
+  if (banner && !saved) banner.classList.remove('hidden');
+  document.getElementById('acceptCookie')?.addEventListener('click', () => { localStorage.setItem('nk-cookie','accepted'); banner?.classList.add('hidden'); });
+  document.getElementById('rejectCookie')?.addEventListener('click', () => { localStorage.setItem('nk-cookie','rejected'); banner?.classList.add('hidden'); });
+})();
+</script>
+
+</body>
+</html>
