@@ -1,1 +1,26 @@
-export async function onRequestGet({request}){const lang=new URL(request.url).searchParams.get("lang")||"en";const c={sq:{q:"fitness OR nutrition OR exercise when:7d",hl:"en-US",gl:"US",ceid:"US:en"},de:{q:"Fitness OR Ernährung OR Training when:7d",hl:"de",gl:"DE",ceid:"DE:de"},en:{q:"fitness OR nutrition OR exercise when:7d",hl:"en-US",gl:"US",ceid:"US:en"}}[lang]||{q:"fitness when:7d",hl:"en-US",gl:"US",ceid:"US:en"};const u=`https://news.google.com/rss/search?q=${encodeURIComponent(c.q)}&hl=${c.hl}&gl=${c.gl}&ceid=${c.ceid}`;try{const x=await fetch(u,{headers:{"User-Agent":"NKBEASTS/1.0"}});if(!x.ok)throw 0;const xml=await x.text();const dec=v=>String(v||"").replace(/<!\[CDATA\[|\]\]>/g,"").replace(/&amp;/g,"&").replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&lt;/g,"<").replace(/&gt;/g,">");const get=(b,t)=>dec((b.match(new RegExp(`<${t}>([\\s\\S]*?)<\\/${t}>`))||[,""])[1]);const items=[...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0,6).map(([,b])=>{const raw=get(b,"title"),parts=raw.split(" - ");return{title:parts.slice(0,-1).join(" - ")||raw,source:parts.at(-1)||"Google News",link:get(b,"link"),date:get(b,"pubDate")}});return Response.json({items},{headers:{"Cache-Control":"public,max-age=900"}})}catch{return Response.json({items:[]})}}
+(() => {
+  const grid=document.getElementById('newsGrid'), refresh=document.getElementById('refreshNews');
+  if(!grid) return;
+  const fallback=[
+    {title:'Strength training supports healthy ageing',source:'NKBEASTS',link:'#workouts',image:'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=82'},
+    {title:'How much protein do you need each day?',source:'NKBEASTS',link:'#nutrition',image:'https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=900&q=82'},
+    {title:'Simple habits for better fitness recovery',source:'NKBEASTS',link:'#library',image:'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=82'}
+  ];
+  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function draw(items){
+    grid.innerHTML=items.slice(0,6).map(x=>`<article class="news-card" style="--bg:url('${esc(x.image||fallback[0].image)}')"><div><small>${esc(x.source||'Fitness')}</small><h3>${esc(x.title)}</h3><a href="${esc(x.link||'#')}" target="_blank" rel="noopener">Read more →</a></div></article>`).join('');
+  }
+  async function load(){
+    grid.innerHTML='<p class="news-loading">Loading…</p>';
+    try{
+      const lang=window.currentLang||localStorage.getItem('nk-lang')||'sq';
+      const response=await fetch(`/api/rss?lang=${encodeURIComponent(lang)}`,{cache:'no-store'});
+      if(!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data=await response.json();
+      draw(Array.isArray(data.items)&&data.items.length?data.items:fallback);
+    }catch(err){ console.warn('RSS error:',err); draw(fallback); }
+  }
+  refresh?.addEventListener('click',load);
+  window.addEventListener('nk-language-change',load);
+  load();
+})();
