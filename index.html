@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070a0e">
+  <meta name="description" content="NKBEASTS Fitness — ushtrime, video, kalkulatorë, ushqim dhe radio.">
+  <title>NKBEASTS Fitness</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="css/style.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4314152462884278" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home"><span>NK</span>BEASTS</a>
+  <nav id="nav">
+    <a href="#home" data-i18n="home">Kreu</a><a href="#videos" data-i18n="videos">Video</a><a href="#exercises" data-i18n="exercises">Ushtrime</a><a href="#calculators" data-i18n="calculators">Kalkulatorë</a><a href="#nutrition" data-i18n="nutrition">Ushqim</a><a href="#radio" data-i18n="radio">Radio</a>
+  </nav>
+  <div class="actions">
+    <div class="live-counter" title="Tregues demonstrues"><i></i><span>👥</span><strong id="onlineCount">982</strong></div>
+    <button class="lang" data-lang="sq">AL</button><button class="lang" data-lang="de">DE</button><button class="lang" data-lang="en">EN</button>
+    <button id="menuBtn" class="menu">☰</button>
+  </div>
+</header>
+<main>
+<section id="home" class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow" data-i18n="eyebrow">FITNES PËR JETËN REALE</span>
+    <h1 data-i18n-html="hero">Ndërto trupin.<br><em>Forco mendjen.</em></h1>
+    <p data-i18n="intro">Video praktike, plane ushtrimesh, kalkulatorë dhe këshilla të thjeshta për rezultate reale.</p>
+    <div class="cta"><a class="btn primary" href="#videos" data-i18n="watch">Shiko videot</a><a class="btn" href="#calculators" data-i18n="calculate">Llogarit tani</a></div>
+    <div class="stats"><div><strong>6</strong><span data-i18n="videoCount">video lokale</span></div><div><strong>12+</strong><span data-i18n="toolsCount">mjete praktike</span></div><div><strong>3</strong><span data-i18n="languages">gjuhë</span></div></div>
+  </div>
+  <div class="hero-card"><div class="ring"><span>NK</span></div><h3 data-i18n="daily">Misioni i sotëm</h3><p data-i18n="dailyText">30 minuta stërvitje. Zero arsyetime.</p><div class="progress"><span></span></div></div>
+</section>
+
+<section id="videos" class="section">
+  <div class="section-head"><div><span class="eyebrow">VIDEO LIBRARY</span><h2 data-i18n="videoTitle">Video të ushtrimeve</h2></div><p data-i18n="videoDesc">Video të integruara në ZIP; punojnë edhe pa internet.</p></div>
+  <div class="video-grid" id="videoGrid"></div>
+</section>
+
+<section id="exercises" class="section shade">
+  <div class="section-head"><div><span class="eyebrow">BODY MAP</span><h2 data-i18n="exerciseTitle">Zgjidh pjesën e trupit</h2></div><p data-i18n="exerciseDesc">Kliko një kategori për ushtrime dhe udhëzime.</p></div>
+  <div class="chips" id="muscleChips"></div>
+  <div class="exercise-grid" id="exerciseGrid"></div>
+</section>
+
+<section id="calculators" class="section">
+  <div class="section-head"><div><span class="eyebrow">SMART TOOLS</span><h2 data-i18n="calcTitle">Kalkulatorë fitnesi</h2></div><p data-i18n="calcDesc">Vlera orientuese, jo diagnozë mjekësore.</p></div>
+  <div class="calc-tabs"><button class="active" data-calc="bmi">BMI</button><button data-calc="calories">Kalori</button><button data-calc="protein">Proteina</button><button data-calc="water">Ujë</button></div>
+  <div class="calc-card">
+    <form id="calcForm">
+      <label data-i18n="sex">Gjinia<select id="sex"><option value="male">Mashkull</option><option value="female">Femër</option></select></label>
+      <label data-i18n="age">Mosha<input id="age" type="number" value="45" min="14" max="100"></label>
+      <label data-i18n="weight">Pesha (kg)<input id="weight" type="number" value="81" min="30" max="300" step="0.1"></label>
+      <label data-i18n="height">Gjatësia (cm)<input id="height" type="number" value="179" min="120" max="230"></label>
+      <label data-i18n="activity">Aktiviteti<select id="activity"><option value="1.2">I ulët</option><option value="1.375">I lehtë</option><option value="1.55" selected>Mesatar</option><option value="1.725">I lartë</option></select></label>
+      <button class="btn primary" type="submit" data-i18n="calculateBtn">Llogarit</button>
+    </form>
+    <div class="result"><span id="resultLabel">BMI</span><strong id="resultValue">25.3</strong><p id="resultText">Pak mbi intervalin normal.</p></div>
+  </div>
+</section>
+
+<section id="nutrition" class="section shade">
+  <div class="section-head"><div><span class="eyebrow">NUTRITION</span><h2 data-i18n="nutritionTitle">Bazat e ushqimit</h2></div><p data-i18n="nutritionDesc">Thjesht, pa premtime boshe.</p></div>
+  <div class="nutrition-grid">
+    <article><span>🥩</span><h3 data-i18n="proteinTitle">Proteina</h3><p data-i18n="proteinText">Ndihmon ruajtjen dhe ndërtimin e muskujve. Synim i zakonshëm: 1.6–2.2 g/kg për persona aktivë.</p></article>
+    <article><span>🍚</span><h3 data-i18n="carbTitle">Karbohidrate</h3><p data-i18n="carbText">Burim kryesor energjie për stërvitje. Zgjidh oriz, patate, tërshërë, fruta dhe perime.</p></article>
+    <article><span>🥑</span><h3 data-i18n="fatTitle">Yndyra të mira</h3><p data-i18n="fatText">Të rëndësishme për hormone dhe shëndet. Përdor vaj ulliri, arra, peshk dhe avokado.</p></article>
+  </div>
+</section>
+
+<section id="radio" class="section">
+  <div class="section-head"><div><span class="eyebrow">WORKOUT RADIO</span><h2 data-i18n="radioTitle">Radio për stërvitje</h2></div><p data-i18n="radioDesc">Stream-et kërkojnë internet dhe mund të ndryshojnë nga ofruesi.</p></div>
+  <div class="radio-wrap">
+    <div class="radio-player"><div class="disc">♪</div><div><small data-i18n="nowPlaying">Tani luan</small><h3 id="stationName">SomaFM Groove Salad</h3><audio id="audio" controls preload="none"></audio></div></div>
+    <div class="stations" id="stations"></div>
+  </div>
+</section>
+
+<section class="section shade" id="plan">
+  <div class="section-head"><div><span class="eyebrow">7-DAY START</span><h2 data-i18n="planTitle">Plan i thjeshtë javor</h2></div></div>
+  <div class="plan-grid" id="planGrid"></div>
+</section>
+
+<section id="contact" class="section contact">
+  <div><span class="eyebrow">NKBEASTS</span><h2 data-i18n="contactTitle">Gati për ndryshim?</h2><p data-i18n="contactText">Puno me durim, mat progresin dhe mos kërko rezultate të menjëhershme.</p></div>
+  <a class="btn primary" href="mailto:xhatikk@hotmail.com">xhatikk@hotmail.com</a>
+</section>
+</main>
+<footer><div class="brand"><span>NK</span>BEASTS</div><p>© 2026 NKBEASTS Fitness</p><div><button data-legal="privacy">Privacy</button><button data-legal="terms">Terms</button><button data-legal="medical">Medical</button></div></footer>
+
+<div id="videoModal" class="modal"><div class="modal-box video-modal"><button class="close">×</button><video id="modalVideo" controls playsinline></video><h3 id="modalTitle"></h3><p id="modalText"></p></div></div>
+<div id="legalModal" class="modal"><div class="modal-box"><button class="close">×</button><div id="legalContent"></div></div></div>
+<div id="cookie" class="cookie"><p data-i18n="cookieText">Kjo faqe përdor cookies bazë dhe mund të përdorë reklama nga Google AdSense.</p><button id="acceptCookie" class="btn primary" data-i18n="accept">Prano</button></div>
+<script src="js/app.js"></script>
+</body></html>
