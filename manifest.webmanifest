@@ -1,0 +1,12 @@
+{
+  "name": "NKBEASTS Insights",
+  "short_name": "NKBEASTS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07101a",
+  "theme_color": "#07101a",
+  "description": "Independent English and German guides about money, insurance, careers, technology, property and health.",
+  "icons": [
+    {"src":"/assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

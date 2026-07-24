@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nkbeasts-fitness.pages.dev/sitemap.xml
