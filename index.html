@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4314152462884278" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles.css">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4314152462884278" crossorigin="anonymous"></script>
 </head>
 <body>
 <header class="site-header">
@@ -57,9 +57,14 @@
     </div>
   </div>
   <div class="hero-visual">
-    <img src="assets/isolation-exercises.jpg" alt="Ushtrime izolimi për pjesët e trupit">
-    <div class="hero-badge"><b>VIDEO LIBRARY</b><span>Kliko. Shiko. Ushtro.</span></div>
+    <img src="assets/hero-man-woman.jpg" alt="Mashkull dhe femër duke përfaqësuar programet NKBEASTS">
+    <div class="hero-badge"><b>MEN + WOMEN</b><span>Train. Fuel. Inspire.</span></div>
   </div>
+</section>
+<section class="front-community" aria-label="NKBEASTS community">
+  <div class="live-total"><span class="online-dot"></span><small>VIZITORË LIVE</small><b id="frontOnlineCount">—</b><span>online tani</span></div>
+  <a class="path-card men" href="#videos"><div><small>PROGRAMET PËR MESHKUJ</small><h3>BUILD MUSCLE</h3><span>Shiko ushtrimet →</span></div></a>
+  <a class="path-card women" href="#videos"><div><small>PROGRAMET PËR FEMRA</small><h3>GET STRONGER</h3><span>Shiko ushtrimet →</span></div></a>
 </section>
 
 <section class="video-section" id="videos">
@@ -150,7 +155,10 @@
   <div class="radio-copy">
     <span class="eyebrow" data-i18n="radioEyebrow">MUZIKË GJATË STËRVITJES</span>
     <h2 data-i18n-html="radioTitle">RADIO <em>LIVE</em></h2>
-    <p data-i18n="radioText">Zgjidh një radio nga Kosova ose Shqipëria. Lista merret automatikisht nga Radio Browser.</p>
+    <p data-i18n="radioText">Zgjidh zhanrin dhe pastaj stacionin. Lista merret live nga Radio Browser.</p>
+    <div class="genre-buttons" id="genreButtons">
+      <button class="active" data-tag="hiphop">Hip Hop</button><button data-tag="rnb">R&amp;B</button><button data-tag="rap">Rap</button><button data-tag="rock">Rock</button><button data-tag="drum and bass">Drum &amp; Bass</button><button data-tag="techno">Techno</button><button data-tag="chillout">Chill</button><button data-tag="dance">Dance</button>
+    </div>
     <label class="station-select"><span data-i18n="station">Stacioni</span><select id="stationSelect"><option>Duke ngarkuar radiot…</option></select></label>
   </div>
   <div class="radio-player">

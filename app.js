@@ -102,29 +102,29 @@ async function loadNews(){
 }
 document.getElementById("refreshNews").addEventListener("click",loadNews);
 
-// Radio Browser stations
-const audio=document.getElementById("radioAudio"),stationSelect=document.getElementById("stationSelect"),radioPlay=document.getElementById("radioPlay"),radioBox=document.querySelector(".radio-player");
+// Radio Browser stations by genre
+const audio=document.getElementById("radioAudio"),stationSelect=document.getElementById("stationSelect"),radioPlay=document.getElementById("radioPlay"),radioBox=document.querySelector(".radio-player"),genreButtons=document.getElementById("genreButtons");
 let stations=[];
-async function loadStations(){
+async function loadStations(tag="hiphop"){
+ stationSelect.innerHTML='<option>Duke ngarkuar radiot…</option>';
+ radioMessage.textContent="";
  try{
-  const endpoints=["https://de1.api.radio-browser.info","https://nl1.api.radio-browser.info"];
+  const endpoints=["https://de1.api.radio-browser.info","https://nl1.api.radio-browser.info","https://at1.api.radio-browser.info"];
   let data=[];
   for(const base of endpoints){
    try{
-    const [xk,al]=await Promise.all([
-      fetch(`${base}/json/stations/bycountrycodeexact/XK?hidebroken=true&order=clickcount&reverse=true&limit=35`).then(r=>r.json()),
-      fetch(`${base}/json/stations/bycountrycodeexact/AL?hidebroken=true&order=clickcount&reverse=true&limit=35`).then(r=>r.json())
-    ]);
-    data=[...xk,...al]; if(data.length)break;
+    const r=await fetch(`${base}/json/stations/bytagexact/${encodeURIComponent(tag)}?hidebroken=true&order=clickcount&reverse=true&limit=60`);
+    if(!r.ok) throw new Error("radio api");
+    data=await r.json(); if(data.length) break;
    }catch(_){}
   }
-  stations=data.filter(s=>s.url_resolved&&/^https?:/i.test(s.url_resolved)).filter((s,i,a)=>a.findIndex(x=>x.url_resolved===s.url_resolved)===i).slice(0,50);
+  stations=data.filter(s=>s.url_resolved&&/^https?:/i.test(s.url_resolved)).filter((s,i,a)=>a.findIndex(x=>x.url_resolved===s.url_resolved)===i).slice(0,45);
   if(!stations.length)throw new Error("No stations");
   stationSelect.innerHTML=stations.map((s,i)=>`<option value="${i}">${escapeHtml(s.name||"Radio")} — ${escapeHtml(s.country||"")}</option>`).join("");
   selectStation(0);
  }catch(e){
-  stationSelect.innerHTML='<option value="">Radio Browser nuk u ngarkua</option>';
-  radioMessage.textContent="Radiot kërkojnë internet dhe mund të bllokohen nga disa shfletues.";
+  stationSelect.innerHTML='<option value="">Stacionet nuk u ngarkuan</option>';
+  radioMessage.textContent="Radio Browser nuk u përgjigj. Provo përsëri pas pak.";
  }
 }
 function selectStation(i){
@@ -132,13 +132,14 @@ function selectStation(i){
  audio.pause();audio.src=s.url_resolved;radioPlay.textContent="▶";radioBox.classList.remove("playing");
  stationName.textContent=s.name||"Radio Live";stationCountry.textContent=s.country||"";radioMessage.textContent="";
 }
+genreButtons?.querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>{
+ genreButtons.querySelectorAll("button").forEach(x=>x.classList.remove("active"));button.classList.add("active");loadStations(button.dataset.tag);
+}));
 stationSelect.addEventListener("change",()=>selectStation(stationSelect.value));
 radioPlay.addEventListener("click",async()=>{
  if(!audio.src){radioMessage.textContent="Zgjidh një stacion.";return}
- try{
-  if(audio.paused){await audio.play();radioPlay.textContent="❚❚";radioBox.classList.add("playing");radioMessage.textContent="";}
-  else{audio.pause();radioPlay.textContent="▶";radioBox.classList.remove("playing");}
- }catch(e){radioMessage.textContent="Ky stacion nuk pranohet nga browseri. Provo një tjetër."}
+ try{if(audio.paused){await audio.play();radioPlay.textContent="❚❚";radioBox.classList.add("playing");radioMessage.textContent="";}else{audio.pause();radioPlay.textContent="▶";radioBox.classList.remove("playing");}}
+ catch(e){radioMessage.textContent="Ky stream nuk pranohet nga browseri. Provo një stacion tjetër."}
 });
 radioVolume.addEventListener("input",()=>audio.volume=+radioVolume.value);audio.volume=.8;
 audio.addEventListener("error",()=>{radioMessage.textContent="Transmetimi nuk u hap. Provo një stacion tjetër.";radioBox.classList.remove("playing");radioPlay.textContent="▶"});
@@ -186,12 +187,16 @@ async function updateOnlineCount() {
     const mobile = document.getElementById("onlineCountMobile");
     if (desktop) desktop.textContent = count;
     if (mobile) mobile.textContent = count;
+    const front = document.getElementById("frontOnlineCount");
+    if (front) front.textContent = count;
   } catch (_) {
     // Keep a truthful minimum of the current visitor rather than inventing numbers.
     const desktop = document.getElementById("onlineCount");
     const mobile = document.getElementById("onlineCountMobile");
-    if (desktop) desktop.textContent = "1";
-    if (mobile) mobile.textContent = "1";
+    if (desktop) desktop.textContent = "—";
+    if (mobile) mobile.textContent = "—";
+    const front = document.getElementById("frontOnlineCount");
+    if (front) front.textContent = "—";
   }
 }
 updateOnlineCount();
