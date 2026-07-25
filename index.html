@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080a0d">
+  <meta name="description" content="NKBEASTS — ushtrime me video, programe fitnesi dhe pajisje sportive.">
+  <title>NKBEASTS — Ushtrime me Video</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4314152462884278" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="#home" aria-label="NKBEASTS Ballina">
+    <span class="brand-mark">NK</span>
+    <span><b>BEASTS</b><small>TRAIN · FUEL · INSPIRE</small></span>
+  </a>
+  <button class="menu-btn" id="menuBtn" aria-label="Hap menynë">☰</button>
+  <nav id="nav">
+    <a href="#home">Ballina</a>
+    <a href="#videos">Video</a>
+    <a href="#programs">Programet</a>
+    <a href="#nutrition" data-i18n="navNutrition">Ushqim</a>
+    <a href="#calculators" data-i18n="navCalculators">Kalkulatorë</a>
+    <a href="#news" data-i18n="navNews">Lajme</a>
+    <a href="#radio" data-i18n="navRadio">Radio</a>
+    <a href="#gear" data-i18n="navGear">NK Gear</a>
+  </nav>
+  <div class="online-widget" title="Vizitorë aktivë në 90 sekondat e fundit">
+    <span class="online-dot"></span>
+    <b id="onlineCount">1</b>
+    <small data-i18n="onlineNow">online tani</small>
+  </div>
+  <div class="langs">
+    <button class="active" data-lang="sq">SQ</button><button data-lang="de">DE</button><button data-lang="en">EN</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <span class="eyebrow" data-i18n="heroEyebrow">PLATFORMA JOTE E FITNESIT</span>
+    <h1 data-i18n-html="heroTitle">BËHU MË I FORTË.<br><em>STËRVITU MË MENÇUR.</em></h1>
+    <p data-i18n="heroText">Video të qarta, teknikë e saktë dhe programe praktike për çdo pjesë të trupit.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#videos" data-i18n="heroVideos">Shiko ushtrimet</a>
+      <a class="btn ghost" href="#programs" data-i18n="heroPrograms">Eksploro programet</a>
+    </div>
+    <div class="hero-stats">
+      <span><b>8</b> video teknike</span>
+      <span><b>5</b> kategori</span>
+      <span><b>3</b> nivele</span>
+      <span class="mobile-online"><b id="onlineCountMobile">1</b> <span data-i18n="onlineNow">online tani</span></span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <img src="assets/isolation-exercises.jpg" alt="Ushtrime izolimi për pjesët e trupit">
+    <div class="hero-badge"><b>VIDEO LIBRARY</b><span>Kliko. Shiko. Ushtro.</span></div>
+  </div>
+</section>
+
+<section class="video-section" id="videos">
+  <div class="section-head">
+    <div><span class="eyebrow">MËSO ME SY</span><h2>USHTRIMET <em>ME VIDEO</em></h2></div>
+    <p>Teknika e saktë e ushtrimeve kryesore. Kliko një kartë për të parë video-demonstrimin, seritë, përsëritjet dhe gabimet kryesore.</p>
+  </div>
+  <div class="filters" id="filters">
+    <button class="active" data-filter="all">Të gjitha</button>
+    <button data-filter="chest">Kraharor</button>
+    <button data-filter="back">Shpinë</button>
+    <button data-filter="legs">Këmbë</button>
+    <button data-filter="arms">Krahë</button>
+    <button data-filter="core">Bërthama</button>
+  </div>
+  <div class="exercise-grid" id="exerciseGrid"></div>
+</section>
+
+<section class="feature-band" id="programs">
+  <div>
+    <span class="eyebrow">PROGRAM I ZGJEDHUR</span>
+    <h2>3-JAVË <em>AB TRANSFORMATION</em></h2>
+    <p>Program i thjeshtë për barkun: 3 seanca në javë, 20–25 minuta, me progres të kontrolluar.</p>
+    <button class="btn primary" id="openProgram">Hape programin</button>
+  </div>
+  <img src="assets/ab-transformation.jpg" alt="Program 3-javor për barkun">
+</section>
+
+<section class="content-grid" id="nutrition">
+  <article class="content-card">
+    <img src="assets/spices-circulation.jpg" alt="Erëza dhe qarkullimi i gjakut">
+    <div><span>USHQIM</span><h3>Erëzat dhe qarkullimi</h3><p>Material informues që do të rishkruhet saktë në SQ, DE dhe EN.</p></div>
+  </article>
+  <article class="content-card">
+    <img src="assets/biceps-types.jpg" alt="Llojet e bicepsit">
+    <div><span>ANATOMI</span><h3>Forma e bicepsit</h3><p>Gjenetika ndikon në formë; stërvitja ndikon në madhësi, forcë dhe definim.</p></div>
+  </article>
+</section>
+
+
+<section class="calculators" id="calculators">
+  <div class="section-head">
+    <div><span class="eyebrow" data-i18n="calcEyebrow">MAT PROGRESIN</span><h2 data-i18n-html="calcTitle">KALKULATORË <em>FITNESS</em></h2></div>
+    <p data-i18n="calcText">Llogarit BMI-në, kaloritë ditore dhe proteinën. Rezultatet janë orientuese, jo diagnozë mjekësore.</p>
+  </div>
+  <div class="calc-grid">
+    <form class="calc-card" id="bmiForm">
+      <span>BMI</span><h3 data-i18n="bmiTitle">Indeksi i masës trupore</h3>
+      <label><span data-i18n="height">Gjatësia (cm)</span><input id="bmiHeight" type="number" min="100" max="230" value="178" required></label>
+      <label><span data-i18n="weight">Pesha (kg)</span><input id="bmiWeight" type="number" min="35" max="300" value="81" required></label>
+      <button class="btn primary" type="submit" data-i18n="calculate">Llogarit</button>
+      <output id="bmiResult">—</output>
+    </form>
+    <form class="calc-card" id="calorieForm">
+      <span>TDEE</span><h3 data-i18n="calorieTitle">Kaloritë ditore</h3>
+      <div class="two-fields">
+        <label><span data-i18n="age">Mosha</span><input id="calAge" type="number" min="15" max="100" value="45" required></label>
+        <label><span data-i18n="sex">Gjinia</span><select id="calSex"><option value="male">Mashkull</option><option value="female">Femër</option></select></label>
+      </div>
+      <div class="two-fields">
+        <label><span data-i18n="height">Gjatësia (cm)</span><input id="calHeight" type="number" value="178" required></label>
+        <label><span data-i18n="weight">Pesha (kg)</span><input id="calWeight" type="number" value="81" required></label>
+      </div>
+      <label><span data-i18n="activity">Aktiviteti</span><select id="calActivity"><option value="1.2">I ulët</option><option value="1.375">I lehtë</option><option value="1.55" selected>Mesatar</option><option value="1.725">I lartë</option></select></label>
+      <button class="btn primary" type="submit" data-i18n="calculate">Llogarit</button>
+      <output id="calorieResult">—</output>
+    </form>
+    <form class="calc-card" id="proteinForm">
+      <span>PROTEIN</span><h3 data-i18n="proteinTitle">Proteina ditore</h3>
+      <label><span data-i18n="weight">Pesha (kg)</span><input id="proteinWeight" type="number" value="81" required></label>
+      <label><span data-i18n="goal">Qëllimi</span><select id="proteinGoal"><option value="1.4">Shëndet / aktivitet</option><option value="1.8" selected>Muskuj / definim</option><option value="2.0">Deficit i fortë</option></select></label>
+      <button class="btn primary" type="submit" data-i18n="calculate">Llogarit</button>
+      <output id="proteinResult">—</output>
+    </form>
+  </div>
+</section>
+
+<section class="news-section" id="news">
+  <div class="section-head">
+    <div><span class="eyebrow" data-i18n="newsEyebrow">FITNESS · USHQIM · SHËNDET</span><h2 data-i18n-html="newsTitle">LAJMET <em>E FUNDIT</em></h2></div>
+    <div class="news-actions"><button class="btn ghost" id="refreshNews" data-i18n="refresh">Rifresko lajmet</button></div>
+  </div>
+  <div class="news-status" id="newsStatus">Duke ngarkuar…</div>
+  <div class="news-grid" id="newsGrid"></div>
+</section>
+
+<section class="radio-section" id="radio">
+  <div class="radio-copy">
+    <span class="eyebrow" data-i18n="radioEyebrow">MUZIKË GJATË STËRVITJES</span>
+    <h2 data-i18n-html="radioTitle">RADIO <em>LIVE</em></h2>
+    <p data-i18n="radioText">Zgjidh një radio nga Kosova ose Shqipëria. Lista merret automatikisht nga Radio Browser.</p>
+    <label class="station-select"><span data-i18n="station">Stacioni</span><select id="stationSelect"><option>Duke ngarkuar radiot…</option></select></label>
+  </div>
+  <div class="radio-player">
+    <div class="radio-disc"><span>NK</span></div>
+    <div class="now-playing"><small data-i18n="nowPlaying">TANI DUKE LUAJTUR</small><b id="stationName">Radio Live</b><span id="stationCountry">Kosovë / Shqipëri</span></div>
+    <button class="radio-play" id="radioPlay" aria-label="Play/Pause">▶</button>
+    <label class="volume">🔊 <input id="radioVolume" type="range" min="0" max="1" step="0.05" value="0.8"></label>
+    <audio id="radioAudio" preload="none"></audio>
+    <div class="radio-message" id="radioMessage"></div>
+  </div>
+</section>
+
+<section class="gear" id="gear">
+  <div class="section-head">
+    <div><span class="eyebrow">NKBEASTS GEAR</span><h2>NDËRTUAR PËR <em>BEASTS</em></h2></div>
+    <p>Jo një foto e vetme pa kuptim. Produktet paraqiten si koleksion real, me përshkrim dhe buton.</p>
+  </div>
+  <div class="gear-grid">
+    <article class="gear-main"><img src="assets/nkbeasts-gear.jpg" alt="Koleksioni NKBEASTS"></article>
+    <article class="product-card">
+      <img src="assets/nkbeasts-shaker.jpg" alt="NKBEASTS Premium Shaker">
+      <div><span>PREMIUM GEAR</span><h3>Shaker 700 ml</h3><p>Kapak i sigurt, top metalik dhe dizajn NKBEASTS.</p><button class="btn ghost">Së shpejti</button></div>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="brand"><span class="brand-mark">NK</span><span><b>BEASTS</b><small>UNLEASH YOUR BEAST</small></span></div>
+  <div class="footer-meta"><p>© 2026 NKBEASTS. Përmbajtje edukative — jo këshillë mjekësore.</p><p><button class="footer-link" data-legal="privacy">Privatësia</button> · <button class="footer-link" data-legal="imprint">Impressum</button> · <button class="footer-link" data-legal="contact">Kontakt</button></p></div>
+</footer>
+
+<div class="modal" id="videoModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-panel">
+    <button class="modal-close" data-close aria-label="Mbylle">×</button>
+    <div class="video-wrap"><iframe id="videoFrame" title="Video e ushtrimit" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <div class="modal-content">
+      <span id="modalCategory"></span>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <div class="details">
+        <div><small>SERI × PËRSËRITJE</small><b id="modalSets"></b></div>
+        <div><small>NIVELI</small><b id="modalLevel"></b></div>
+        <div><small>MUSKUJT</small><b id="modalMuscles"></b></div>
+      </div>
+      <div class="tip"><b>Gabimi kryesor:</b> <span id="modalMistake"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="programModal" aria-hidden="true">
+  <div class="modal-backdrop" data-program-close></div>
+  <div class="modal-panel program-panel">
+    <button class="modal-close" data-program-close>×</button>
+    <div class="modal-content">
+      <span>PROGRAM 3-JAVOR</span><h2>AB TRANSFORMATION</h2>
+      <div class="week-grid">
+        <div><b>Java 1</b><p>Plank 3×30s<br>Reverse crunch 3×12<br>Dead bug 3×10/ane</p></div>
+        <div><b>Java 2</b><p>Plank 3×45s<br>Leg raise 3×12<br>Mountain climber 3×30s</p></div>
+        <div><b>Java 3</b><p>Plank 4×45s<br>Hanging knee raise 4×10<br>Bicycle crunch 4×16</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="legalModal" aria-hidden="true">
+  <div class="modal-backdrop" data-legal-close></div>
+  <div class="modal-panel program-panel">
+    <button class="modal-close" data-legal-close>×</button>
+    <div class="modal-content"><span>NKBEASTS</span><h2 id="legalTitle"></h2><div id="legalBody" class="legal-body"></div></div>
+  </div>
+</div>
+
+<div class="cookie-banner" id="cookieBanner">
+  <p><b>Cookies</b> — Përdorim vetëm ruajtje lokale për gjuhën dhe pranimin e këtij njoftimi. AdSense duhet aktivizuar vetëm pasi të plotësohen dokumentet ligjore.</p>
+  <div><button class="btn ghost" id="cookieReject">Vetëm të domosdoshmet</button><button class="btn primary" id="cookieAccept">Prano</button></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
