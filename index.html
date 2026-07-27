@@ -69,6 +69,9 @@ footer{padding:35px 4vw;display:flex;justify-content:space-between;align-items:c
 .modal.open{display:block!important}.modal{display:none;position:fixed;inset:0;z-index:200}.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.78)}.modal-panel{position:relative;z-index:2}
 @media(max-width:1000px){.hero{grid-template-columns:1fr}.hero-visual{min-height:480px;border-radius:18px;margin-top:8px}.hero-visual img{min-height:480px}.front-community{margin-top:0}}
 @media(max-width:620px){.hero{padding-bottom:20px}.hero-visual{min-height:410px}.hero-visual img{min-height:410px;object-position:center top}.hero-badge{display:block}.front-community{padding-top:15px}}
+
+.guide-library{padding:95px 4vw;background:#0a0d11}.guide-toolbar{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 28px}.guide-search{flex:1;min-width:240px;background:#11161c;border:1px solid var(--line);color:#fff;border-radius:10px;padding:13px 15px}.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.guide-card{background:linear-gradient(145deg,#151a21,#0d1116);border:1px solid var(--line);border-radius:14px;padding:22px;transition:.25s;cursor:pointer}.guide-card:hover{transform:translateY(-5px);border-color:var(--gold)}.guide-icon{font-size:42px}.guide-card small{display:block;color:var(--gold);font-weight:800;margin:12px 0 7px}.guide-card h3{margin:0 0 9px;font-size:20px}.guide-card p{color:var(--muted);font-size:13px;line-height:1.55}.guide-meta{display:flex;justify-content:space-between;color:#cbd2dc;font-size:11px;margin-top:15px}.guide-empty{display:none;color:var(--muted);padding:25px 0}.article-body h3{margin:24px 0 8px}.article-body ul{color:var(--muted);line-height:1.75;padding-left:20px}.article-body .warning{background:#241414;border-left:3px solid var(--red);padding:14px;margin-top:18px;color:#f0caca}.article-body .steps{counter-reset:step;display:grid;gap:10px;margin:18px 0}.article-body .steps div{counter-increment:step;background:#171d24;border:1px solid var(--line);padding:14px 14px 14px 50px;border-radius:10px;position:relative;color:#dce1e7}.article-body .steps div:before{content:counter(step);position:absolute;left:14px;top:12px;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#111;font-weight:900}
+@media(max-width:1000px){.guide-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.guide-library{padding:70px 18px}.guide-grid{grid-template-columns:1fr}}
 </style>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4314152462884278" crossorigin="anonymous"></script>
 
@@ -118,6 +121,7 @@ footer{padding:35px 4vw;display:flex;justify-content:space-between;align-items:c
     <a href="#home">Ballina</a>
     <a href="#videos">Video</a>
     <a href="#programs">Programet</a>
+    <a href="#guides">Udhëzues</a>
     <a href="#nutrition" data-i18n="navNutrition">Ushqim</a>
     <a href="#calculators" data-i18n="navCalculators">Kalkulatorë</a>
     <a href="#news" data-i18n="navNews">Lajme</a>
@@ -199,6 +203,21 @@ footer{padding:35px 4vw;display:flex;justify-content:space-between;align-items:c
   </article>
 </section>
 
+
+
+<section class="guide-library" id="guides">
+  <div class="section-head">
+    <div><span class="eyebrow">BIBLIOTEKA NKBEASTS</span><h2>UDHËZUES <em>PRAKTIKË</em></h2></div>
+    <p>Përmbajtje origjinale për teknikën, ushqimin, rikuperimin dhe progresin. Pa premtime magjike — vetëm hapa që funksionojnë në botën reale.</p>
+  </div>
+  <div class="guide-toolbar">
+    <input class="guide-search" id="guideSearch" type="search" placeholder="Kërko: gjoks, proteinë, kreatinë, bark..." aria-label="Kërko udhëzues">
+    <div class="filters" id="guideFilters">
+      <button class="active" data-guide-filter="all">Të gjitha</button><button data-guide-filter="training">Stërvitje</button><button data-guide-filter="nutrition">Ushqim</button><button data-guide-filter="recovery">Rikuperim</button>
+    </div>
+  </div>
+  <div class="guide-grid" id="guideGrid"></div><p class="guide-empty" id="guideEmpty">Nuk u gjet asnjë udhëzues.</p>
+</section>
 
 <section class="calculators" id="calculators">
   <div class="section-head">
@@ -334,6 +353,15 @@ footer{padding:35px 4vw;display:flex;justify-content:space-between;align-items:c
   <div><button class="btn ghost" id="cookieReject">Vetëm të domosdoshmet</button><button class="btn primary" id="cookieAccept">Prano</button></div>
 </div>
 
+
+
+<div class="modal" id="guideModal" aria-hidden="true">
+  <div class="modal-backdrop" data-guide-close></div>
+  <div class="modal-panel">
+    <button class="modal-close" data-guide-close>×</button>
+    <div class="modal-content article-body" id="guideArticle"></div>
+  </div>
+</div>
 
 <script>const exercises = [
  {id:1,title:"Barbell Back Squat",category:"legs",cat:"KËMBË",muscles:"Quads, Glutes, Core",sets:"4 × 6–10",level:"Mesatar",video:"QmZAiBqPvZw",desc:"Mbreti i ushtrimeve. Këmbët në gjerësi shpatullash, gjunjët në linjë me gishtat dhe zbritje e kontrolluar deri paralel.",mistake:"Gjunjët bien brenda ose shpina rrumbullakohet."},
@@ -541,6 +569,28 @@ setInterval(updateOnlineCount, 30000);
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) updateOnlineCount();
 });
+
+const guides=[
+ {id:'chest',cat:'training',icon:'🏋️',tag:'STËRVITJE',title:'Si të ndërtosh gjoksin',time:'6 min',level:'Fillestar–Mesatar',desc:'Zgjedhja e ushtrimeve, volumi dhe teknika për zhvillim real.',steps:['Fillo me bench press ose dumbbell press.','Shto incline press për pjesën e sipërme.','Përdor fly vetëm si izolim, jo si bazë.','Mbaj 10–16 seri efektive në javë.'],tips:['Shpatullat poshtë dhe prapa.','Mos e kërcit peshën nga gjoksi.','Rrit peshën vetëm kur forma mbetet e pastër.']},
+ {id:'back',cat:'training',icon:'🦅',tag:'STËRVITJE',title:'Shpinë më e gjerë dhe më e fortë',time:'7 min',level:'Të gjitha nivelet',desc:'Kombino tërheqjet vertikale dhe horizontale pa e lodhur belin kot.',steps:['Lat pulldown ose pull-up.','Row me mbështetje për gjoksin.','Një ushtrim për pjesën e poshtme të shpinës.','12–18 seri në javë, të shpërndara në 2 ditë.'],tips:['Tërhiq me bërryla, jo me duar.','Mos përdor hov të tepërt.','Ndalo setin kur humbet kontrollin.']},
+ {id:'legs',cat:'training',icon:'🦵',tag:'STËRVITJE',title:'Program i plotë për këmbët',time:'8 min',level:'Mesatar',desc:'Quadriceps, hamstrings, glute dhe pulpë në një strukturë të balancuar.',steps:['Squat ose leg press.','Romanian deadlift.','Leg curl dhe leg extension.','Calf raises me pauzë në fund.'],tips:['Gjunjët ndjekin drejtimin e gishtave.','Mos sakrifiko thellësinë për ego.','Lër 48–72 orë rikuperim.']},
+ {id:'belly',cat:'training',icon:'🔥',tag:'HUMBJE DHJAMI',title:'E vërteta për dhjamin e barkut',time:'5 min',level:'Të gjitha nivelet',desc:'Nuk ka ushtrim që djeg vetëm barkun; rezultati vjen nga deficiti dhe konsistenca.',steps:['Krijo deficit të moderuar kalorik.','Mbaj proteinën lart.','Bëj 7–10 mijë hapa.','Stërvit forcën 3–5 herë në javë.'],tips:['Mos e ul ushqimin në mënyrë ekstreme.','Mat belin çdo 2 javë.','Gjumi i dobët rrit urinë.']},
+ {id:'protein',cat:'nutrition',icon:'🥩',tag:'USHQIM',title:'Sa proteinë të duhet?',time:'5 min',level:'Praktik',desc:'Një rregull i thjeshtë për ruajtje dhe ndërtim muskuli.',steps:['Syno rreth 1.6–2.2 g/kg peshë trupore.','Ndaje në 3–5 vakte.','Përdor ushqim normal si bazë.','Whey është komoditet, jo domosdoshmëri.'],tips:['20–45 g për vakt është praktik për shumicën.','Pije ujë mjaftueshëm.','Sëmundjet e veshkave kërkojnë këshillë mjekësore.']},
+ {id:'creatine',cat:'nutrition',icon:'⚡',tag:'SUPLEMENTE',title:'Kreatina pa mite',time:'6 min',level:'Praktik',desc:'Çfarë bën, si merret dhe çfarë nuk duhet të presësh prej saj.',steps:['Merr 3–5 g kreatinë monohidrat çdo ditë.','Koha e marrjes nuk është kritike.','Faza e ngarkimit është opsionale.','Vlerëso progresin pas disa javësh.'],tips:['Mund të rrisë peshën nga uji në muskul.','Nuk zëvendëson dietën dhe programin.','Zgjidh monohidrat të thjeshtë.']},
+ {id:'calories',cat:'nutrition',icon:'🍽️',tag:'USHQIM',title:'Kaloritë dhe makrot pa konfuzion',time:'8 min',level:'Fillestar',desc:'Si të krijosh plan që mund ta mbash, jo dietë që dështon pas 10 ditësh.',steps:['Gjej kaloritë e mirëmbajtjes.','Për humbje peshe ul 300–500 kcal.','Vendos proteinën e para.','Plotëso pjesën tjetër me karbohidrate dhe yndyrna.'],tips:['Pesha luhatet çdo ditë.','Shiko mesataren javore.','Mos ndalo ushqimet që të pëlqejnë plotësisht.']},
+ {id:'mealprep',cat:'nutrition',icon:'🥗',tag:'PLANIFIKIM',title:'Meal prep për familje dhe punë',time:'7 min',level:'Praktik',desc:'Ushqim i thjeshtë për njerëz që nuk kanë kohë të gatuajnë çdo ditë.',steps:['Zgjidh 2 burime proteine.','Përgatit oriz, patate ose pasta.','Shto 2–3 lloje perimesh.','Ndaji në porcione për 3 ditë.'],tips:['Mos përgatit 7 ditë ushqim njëherësh.','Përdor erëza për shije.','Mbaj fruta dhe kos si snack.']},
+ {id:'sleep',cat:'recovery',icon:'😴',tag:'RIKUPERIM',title:'Gjumi është pjesë e programit',time:'6 min',level:'Të gjitha nivelet',desc:'Pa gjumë, forca, uria dhe motivimi përkeqësohen.',steps:['Syno orar të qëndrueshëm.','Ndalo kafeinën 8–10 orë para gjumit.','Ule dritën dhe ekranet në mbrëmje.','Mbaje dhomën të freskët dhe të errët.'],tips:['Mos përdor alkool si ndihmë gjumi.','Stërvitja e vonë mund të pengojë disa njerëz.','Pagjumësia e vazhdueshme kërkon mjek.']},
+ {id:'over40',cat:'recovery',icon:'🛡️',tag:'FITNESS 40+',title:'Stërvitja pas moshës 40',time:'8 min',level:'40+',desc:'Më pak ego, më shumë progres: menaxho lodhjen dhe mbaj muskujt.',steps:['Stërvit çdo muskul 2 herë në javë.','Mbaj 1–3 përsëritje në rezervë.','Ngroh nyjet dhe bëj seri përgatitore.','Planifiko javë më të lehta kur lodhja grumbullohet.'],tips:['Dhimbja e nyjeve nuk është medalje.','Teknika vlen më shumë se pesha.','Ecja ditore ndihmon rikuperimin.']},
+ {id:'warmup',cat:'recovery',icon:'🔄',tag:'PARANDALIM',title:'Ngrohja që nuk humb kohë',time:'4 min',level:'Të gjitha nivelet',desc:'5–10 minuta që përgatisin trupin pa të lodhur para setit kryesor.',steps:['2–4 minuta lëvizje e lehtë.','Mobilitet vetëm aty ku duhet.','2–4 seri përgatitore të ushtrimit kryesor.','Rrit peshën gradualisht.'],tips:['Stretching i gjatë para forcës mund të ulë performancën.','Ngrohja duhet të përgatisë, jo të lodhë.','Përshtate me ushtrimin e ditës.']},
+ {id:'progressive',cat:'training',icon:'📈',tag:'PROGRES',title:'Progressive overload siç duhet',time:'6 min',level:'Mesatar',desc:'Progresi nuk është vetëm të shtosh peshë çdo javë.',steps:['Rrit përsëritjet brenda intervalit.','Pastaj shto peshë të vogël.','Mund të rritësh kontrollin ose amplitudën.','Regjistro setet kryesore.'],tips:['Mos ndrysho çdo ushtrim çdo javë.','Progresi nuk është linear përgjithmonë.','Deload kur performanca bie vazhdimisht.']}
+];
+const guideGrid=document.getElementById('guideGrid'),guideSearch=document.getElementById('guideSearch'),guideEmpty=document.getElementById('guideEmpty'),guideModal=document.getElementById('guideModal'),guideArticle=document.getElementById('guideArticle');
+let guideFilter='all';
+function renderGuides(){if(!guideGrid)return;const q=(guideSearch?.value||'').toLowerCase().trim();const list=guides.filter(g=>(guideFilter==='all'||g.cat===guideFilter)&&(`${g.title} ${g.desc} ${g.tag}`.toLowerCase().includes(q)));guideGrid.innerHTML=list.map(g=>`<article class="guide-card" data-guide="${g.id}"><div class="guide-icon">${g.icon}</div><small>${g.tag}</small><h3>${g.title}</h3><p>${g.desc}</p><div class="guide-meta"><span>${g.time} lexim</span><span>${g.level}</span></div></article>`).join('');guideEmpty.style.display=list.length?'none':'block';guideGrid.querySelectorAll('[data-guide]').forEach(c=>c.onclick=()=>openGuide(c.dataset.guide));}
+function openGuide(id){const g=guides.find(x=>x.id===id);if(!g)return;guideArticle.innerHTML=`<span>${g.tag}</span><h2>${g.icon} ${g.title}</h2><p>${g.desc}</p><h3>Hapat kryesorë</h3><div class="steps">${g.steps.map(x=>`<div>${x}</div>`).join('')}</div><h3>Këshilla që bëjnë diferencë</h3><ul>${g.tips.map(x=>`<li>${x}</li>`).join('')}</ul><div class="warning"><b>Kujdes:</b> Kjo përmbajtje është edukative. Ndal stërvitjen dhe kërko ndihmë profesionale nëse ke dhimbje të fortë, marramendje, vështirësi në frymëmarrje ose problem shëndetësor.</div>`;guideModal.classList.add('open');guideModal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+document.querySelectorAll('[data-guide-close]').forEach(x=>x.addEventListener('click',()=>{guideModal?.classList.remove('open');guideModal?.setAttribute('aria-hidden','true');document.body.style.overflow='';}));
+document.querySelectorAll('[data-guide-filter]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-guide-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');guideFilter=b.dataset.guideFilter;renderGuides();});guideSearch?.addEventListener('input',renderGuides);renderGuides();
+
 </script>
 </body>
 </html>
