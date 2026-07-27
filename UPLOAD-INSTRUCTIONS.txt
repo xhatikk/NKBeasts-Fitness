@@ -1,0 +1,1 @@
+UPLOAD THIS ZIP DIRECTLY TO CLOUDFLARE PAGES DIRECT UPLOAD, OR EXTRACT AND UPLOAD ALL ROOT FILES. Do not place files inside an extra folder. This build has CSS, JavaScript and images embedded in every HTML page and does not use _worker.js.
